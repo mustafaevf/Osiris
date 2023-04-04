@@ -18,18 +18,15 @@ if($_SESSION['auth'] == 1) {
 
 }
 if($url == 'login') {
-
+    include "app/login.php";
 } elseif($url == 'register') {
-
+    include "app/register.php";
 } elseif($url == 'recovery') {
-
+    include "app/recovery.php";
 } elseif($url == '') {
     include "app/main.php";
 } else {
     echo '404';
-    // $page = explode('/', $url);
-    // echo $page[2];
-    // echo count($page);
 }
 
 
@@ -44,7 +41,19 @@ function top($title) {
                 <link rel="stylesheet" href="public/styles/style.css">
                 <title>'.$title.'</title>
             </head>
-            <body>';
+            <body> 
+                <header>
+                    <div class="header-container">
+                        <div class="header-logo">
+                            asdasdas
+                        </div>
+                        <div class="header-menu">
+                            <ul>
+                                <li><a href="">dsadsa</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>';
 
 }
 

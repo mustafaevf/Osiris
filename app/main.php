@@ -4,15 +4,16 @@ top('123');
 
 ?>
 
-<header>
-    <div class="header-container">
-        <div class="header-logo">
-            asdasdas
-        </div>
-        <div class="header-menu">
+
+<main>
+    <div class="main-container">
+        <div class="main-menu">
             <ul>
-                <li><a href="">dsadsa</a></li>
+                <li><a href="">themes</a></li>
             </ul>
         </div>
+        <div class="main-topics">
+
+        </div>
     </div>
-</header>
+</main>
