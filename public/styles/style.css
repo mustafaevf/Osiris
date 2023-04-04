@@ -15,16 +15,21 @@ a, a:hover {
     color: #000;
 }
 .btn {
+    cursor: pointer;
     align-items: center;
     border-color: transparent;
-    border-radius: 0.25rem;
+    border-radius: 4px;
     border-width: 1px;
-    display: inline-flex;
     font-size: .875rem;
     line-height: 1.25rem;
     padding: 0.5rem 0.75rem;
     pointer-events: auto;
 }
+.btn-line {
+    background: #000;
+    color: #fff;
+}
+
 .btn-neutral {
     background-color: rgba(255,255,255, 1);
     border-color: rgba(0,0,0,.1);
@@ -42,5 +47,61 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+main {
+    padding: 30px 80px;
+}
+.main-container {
+    display: flex;
+    gap: 30px;
+}
+.main-menu {
+    width: 300px;
+    border-radius: 7px;
+    background: rgba(192,192,192,.3);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+li {
+    width: 100%;
+    padding: 10px 10px;
+    cursor: pointer;
+}
+li:hover {
+    transition: .3s;
+    background: rgba(192,192,192,.2);
+}
+.container {
+    max-width: 300px;
+    margin: 10px auto;
+    text-align: center;
+    align-items: center;
+}
+.block-auth {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+input {
+    outline: none;
+    width: 300px;
+    border: 1px solid rgba(0,0,0,.1);
+    border-color: rgba(0,0,0,.1);
+    border-radius: 4px;
+    padding: 10px 10px;
+}
+.input p {
+    color: #000;
+    margin-bottom: 8px;
+    font-size: .875rem;
+    text-align: left;
+}
+.btn-inline-block {
+    width: 300px;
+    display: flex;
+    gap: 10px;
+}
+.btn-inline-block .btn-line {
+    width: 100%;
 }
 /* #d9d9e3 */
