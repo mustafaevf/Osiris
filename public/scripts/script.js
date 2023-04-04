@@ -4,8 +4,31 @@ function href(link) {
 }
 
 function login() {
-    result = $('#auth-login').val();
-    alert(result)
+  const username = $('#auth-login').val();
+  const password = $('#auth-password').val();
+
+  if(username.length < 2 || password.length < 6) {
+      alert('[js] заполните все поля');
+      return;
+  }
+
+  $.ajax({
+    url: 'core/auth/login.php', 
+    type: 'POST',
+    data: {
+      username: username,
+      password: password
+    },
+    success: function(response) {
+      console.log(response)
+      alert(response);
+      
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown);
+      alert('Ошибка при отправке данных на сервер!');
+    }
+  });
 }
 
 function register() {

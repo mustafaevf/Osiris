@@ -17,3 +17,8 @@ top('123');
         </div>
     </div>
 </main>
+
+<?php 
+footer();
+
+?>
