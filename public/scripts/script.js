@@ -16,7 +16,7 @@ function register() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if(username.length < 2 || email.length == 0 || password.length < 6 || password !== rePassword || !emailRegex.test(email)) {
-        alert('заполните все поля');
+        alert('[js] заполните все поля');
         return;
     }
   
@@ -29,6 +29,7 @@ function register() {
         password: password
       },
       success: function(response) {
+        console.log(response)
         alert(response);
         
       },
