@@ -97,3 +97,40 @@ function filterAuthEmail() {
       $("#auth-email").css('border', '1px solid rgba(0,0,0,.1)');
     }
 }
+
+function filterTopicTags () {
+  // const tags = $('#create-topic-tags').val();
+  // const char = tags.substr(-1, 1);
+  // if(char == ' ') {
+  //   if(tags != '') {
+  //     $('.tags').append('<div class="tag">' + tags + '</div>')
+  //     $('#create-topic-tags').val(' ');
+  //   }
+    
+  // }
+}
+
+function createTopic() {
+  const title = $('#create-topic-title').val();
+  const description = $('#create-topic-description').val();
+  const tags = $('#create-topic-tags').val();
+
+  $.ajax({
+    url: 'core/topic/create-topic.php', 
+    type: 'POST',
+    data: {
+      title: title,
+      description: description,
+      tags: tags
+    },
+    success: function(response) {
+      console.log(response)
+      alert(response);
+      
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown);
+      alert('Ошибка при отправке данных на сервер!');
+    }
+  });
+}

@@ -14,15 +14,36 @@ if($_SESSION['auth'] == 1) {
             echo 'users/'. $page[1].'/';
         }
     }
+    if($page[0] == 'section') {
+        if(count($page) == 2) {
+            if(is_numeric($page[1])) {
+                $section_id = $page[1];
+                $query = "SELECT * FROM sections WHERE section_id='$section_id' AND status=1";
+                $result = mysqli_query($conn, $query);
+                if(mysqli_num_rows($result) != 1) {
+                    header('Location: /error');
+                }
+            }
+        }
+        if(count($page) == 3) {
+            if($page[2] == 'create-topic') {
+                include "app/create-topic.php";
+            }
+        }
+    }
 } else {
 
 }
+
+
 if($url == 'login') {
     include "app/login.php";
 } elseif($url == 'register') {
     include "app/register.php";
 } elseif($url == 'recovery') {
     include "app/recovery.php";
+} else if($url == 'error') {
+    include 'app/error.php';
 } elseif($url == '') {
     include "app/main.php";
 }
@@ -36,7 +57,7 @@ function top($title) {
                 <meta charset="UTF-8">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="public/styles/style.css">
+                <link rel="stylesheet" href="/public/styles/style.css">
                 <title>'.$title.'</title>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             </head>
@@ -60,7 +81,7 @@ function top($title) {
 }
 
 function footer() {
-    echo '<script src="public/scripts/script.js"></script>
+    echo '<script src="/public/scripts/script.js"></script>
             </body>
         </html>';
     
