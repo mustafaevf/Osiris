@@ -13,14 +13,16 @@ top('123');
                 $query = "SELECT * FROM sections WHERE status=1";
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_array($result)) {
-                    echo '<li><a href="/section/'.$row['section_id'].'">'.$row['section_name'].'</a></li>';
+                    echo '<li onclick="href(`/forums/'.$row['section_id'].'`)">'.$row['section_name'].'<img src="/public/assets/down.png"></img></li>';
                 }
-                ?>
+                ?>      
                 
             </ul>
         </div>
         <div class="main-topics">
-
+            <div class="block">
+                
+            </div>
         </div>
     </div>
 </main>

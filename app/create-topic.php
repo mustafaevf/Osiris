@@ -1,5 +1,5 @@
 <?php 
-top('Создание темы');
+
 $url = substr($_SERVER['REQUEST_URI'], 1);
 $page = explode('/', $url);
 if(!is_numeric($page[1])){
@@ -14,11 +14,15 @@ if(mysqli_num_rows($result) != 1) {
 } else {
     $row = mysqli_fetch_array($result);
 }
+top('Создание темы | '. $row['section_name']);
 ?>
- <a href="/section/<?php echo $row['section_id']; ?>"><?php echo $row['section_name']; ?></a>
-<div class="container">
+ <!-- <a href="/section/<?php echo $row['section_id']; ?>"><?php echo $row['section_name']; ?></a> -->
+<main>
     <div class="form">
-       
+        <div class="input">
+            <p>Раздел</p>
+            <input type="text" placeholder="<?php echo $row['section_name'] ?>" disabled>
+        </div>
         <div class="input">
             <p>Заголовок</p>
             <input type="text" id="create-topic-title">
@@ -34,10 +38,10 @@ if(mysqli_num_rows($result) != 1) {
             </div>
             <input type="text" id="create-topic-tags" onkeyup="filterTopicTags()">
         </div>
-        <button class="btn btn-line" onclick="createTopic()">Создать тему</button>
+        <button class="btn btn-line" onclick="createTopic(<?php echo $row['section_id'] ?>)">Создать тему</button>
     </div>
     
-</div>
+</main>
 
 
 

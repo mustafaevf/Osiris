@@ -4,8 +4,9 @@
     box-sizing: border-box;
 }
 body {
-    background: #f1f3f6;
-    font-family: BlinkMacSystemFont,'Open Sans',HelveticaNeue,sans-serif;
+    /* background: #f1f3f6; */
+    background-color: rgb(250, 250, 250);
+    font-family: 'Inter', sans-serif;
 }
 ul {
     list-style: none;
@@ -13,6 +14,15 @@ ul {
 a, a:hover {
     text-decoration: none;
     color: #000;
+}
+.header-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.header-menu img {
+    width: 20px;
+    cursor: pointer;
 }
 .btn {
     cursor: pointer;
@@ -41,16 +51,41 @@ a, a:hover {
     font-size: .875rem;
     line-height: 1.25rem;
 }
+.header-sub-list {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    cursor: pointer;
+    gap: 8px;
+}
+.header-sub-list img {
+    width: 20px;
+}
 header {
     background: #fff;
     width: 100%;
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    padding: 10px 80px;
+    border-bottom: 0.5px solid rgb(234, 236, 239);
+    padding: 0 80px;
+}
+.header-sub {
+    display: flex;
+    align-items: center;
 }
 .header-container {
     display: flex;
+    padding: 10px;
     align-items: center;
     justify-content: space-between;
+}
+.header-logo a {
+    /* font-size: 24px; */
+    font-weight: 800;
+}
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 main {
     padding: 30px 80px;
@@ -60,8 +95,9 @@ main {
     gap: 30px;
 }
 .main-menu {
-    border: 1px solid rgba(0,0,0,.1);
+    border: 0.5px solid rgb(234, 236, 239);
     width: 300px;
+    padding: 10px;
     border-radius: 4px;
     background: #ffffffd2;
     padding-top: 10px;
@@ -71,9 +107,10 @@ li {
     width: 100%;
     padding: 10px 10px;
     cursor: pointer;
+    border-radius: 4px;
 }
 li:hover {
-    transition: .3s;
+    transition: .4s;
     background: rgba(192,192,192,.2);
 }
 .container {
@@ -82,13 +119,36 @@ li:hover {
     padding: 10px 15px;
     max-width: 900px;
     margin: 10px auto;
-    text-align: center;
     align-items: center;
+}
+.logo {
+    cursor: pointer;
+}
+.popup {
+    position: fixed;
+    border-radius: 7px;
+    background: #fff;
+    border: 1px solid rgb(234, 236, 239);
+}
+.show-off {
+    transition: .5s;
+    display: none;
+    visibility: hidden;
+}
+.popup-information {
+    top: 64px;
+    width: 143px;
+    left: 140px;
+}
+.popup-notification {
+    top: 47px;
+    width: 143px;
+    right: 100px;
 }
 .block-auth {
     display: flex;
     gap: 15px;
-    flex-direction: column;
+    flex-direction: column; 
 }
 input {
     outline: none;
@@ -140,5 +200,42 @@ textarea {
     background: rgba(192,192,192,.3);
     border-radius: 7px;
     padding: 5px;
+}
+.main-menu li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+li img {
+    width: 20px;
+}
+.block {
+    padding: 10px;
+    border: 0.5px solid rgb(234, 236, 239);
+    transition: .3s;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.block:hover {
+    background: rgba(192,192,192,.3);
+    transition: .3s;
+}
+.profile-photo {
+    border-radius: 50%;
+    width: 30px;
+}
+.blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.block-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.block-left {
+    display: flex;
+    flex-direction: column;
 }
 /* #d9d9e3 */

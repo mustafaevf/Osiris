@@ -14,7 +14,7 @@ if($_SESSION['auth'] == 1) {
             echo 'users/'. $page[1].'/';
         }
     }
-    if($page[0] == 'section') {
+    if($page[0] == 'forums') {
         if(count($page) == 2) {
             if(is_numeric($page[1])) {
                 $section_id = $page[1];
@@ -23,11 +23,25 @@ if($_SESSION['auth'] == 1) {
                 if(mysqli_num_rows($result) != 1) {
                     header('Location: /error');
                 }
+                include "app/forums.php";
             }
         }
         if(count($page) == 3) {
             if($page[2] == 'create-topic') {
                 include "app/create-topic.php";
+            }
+        }
+    }
+    if($page[0] == 'topic') {
+        if(count($page) == 2) {
+            if(is_numeric($page[1])) {
+                $topic_id = $page[1];
+                $query = "SELECT * FROM topics WHERE topic_id='$topic_id' AND status=1";
+                $result = mysqli_query($conn, $query);
+                if(mysqli_num_rows($result) != 1) {
+                    header('Location: /error');
+                }
+                include "app/topic.php";
             }
         }
     }
@@ -54,6 +68,9 @@ function top($title) {
     echo '<!DOCTYPE html>
             <html lang="en">
             <head>
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
                 <meta charset="UTF-8">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,16 +79,23 @@ function top($title) {
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             </head>
             <body> 
+                
                 <header>
                     <div class="header-container">
                         <div class="header-logo">   
-                            asdasdas
+                            <div class="logo" onclick="href(`/`)">logo</div>
+                            <div class="header-sub">
+                                <div class="header-sub-list" id="list-information" onclick="show(`info`)">Информация <img src="/public/assets/down.png"></div>
+                            </div>
                         </div>
-                        <div>';
+                        <div class="header-menu">';
 
+                        
                         if($_SESSION['auth'] != 1) {
                             echo '<button class="btn btn-line" onclick="href(`login`)">Авторизация</button><button class="ml-5 btn btn-outline" onclick="href(`register`)">Регистрация</button>';
                         } else {
+                            echo '<img src="/public/assets/notification.svg" onclick="show(`notification`)"></img>';
+                            echo '<img class="profile-photo" src="/public/images/avatars/nophoto.png"></img>';
                             echo $_SESSION['username'];
                         }
 
@@ -82,6 +106,17 @@ function top($title) {
 
 function footer() {
     echo '<script src="/public/scripts/script.js"></script>
+            <div class="popup popup-information show-off">
+                <ul>
+                    <li><a href="/pages/rules">Правила</a></li>
+                    <li><a href="/pages/about">О нас</a></li>
+                </ul>
+            </div>
+            <div class="popup popup-notification show-off">
+                <ul>
+
+                </ul>
+            </div>
             </body>
         </html>';
     

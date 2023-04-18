@@ -1,3 +1,28 @@
+function show(param) {
+  if(param == 'info') {
+    if($('.popup-information').hasClass('show-off')) {
+      $('.popup-information').removeClass('show-off');
+    } else {
+      $('.popup-information').addClass('show-off');
+    }
+    
+  }
+  if(param == 'notification') {
+    if($('.popup-notification').hasClass('show-off')) {
+      $('.popup-notification').removeClass('show-off');
+    } else {
+      $('.popup-notification').addClass('show-off');
+    }
+    
+  }
+}
+// $('#list-information').hover(function() {
+//   if($('.popup-information').hasClass('show-off')) {
+//     $('.popup-information').removeClass('show-off');
+//   } else {
+//     $('.popup-information').addClass('show-off');
+//   }
+// })
 
 function href(link) {
     window.location.href = link;
@@ -110,23 +135,24 @@ function filterTopicTags () {
   // }
 }
 
-function createTopic() {
+function createTopic(forum_id) {
   const title = $('#create-topic-title').val();
   const description = $('#create-topic-description').val();
   const tags = $('#create-topic-tags').val();
 
+  // if(title.length == 0 && title.length > 20 || description)
+
   $.ajax({
-    url: 'core/topic/create-topic.php', 
+    url: '/core/topic/create-topic.php', 
     type: 'POST',
     data: {
       title: title,
       description: description,
-      tags: tags
+      tags: tags,
+      forum_id: forum_id
     },
     success: function(response) {
-      console.log(response)
-      alert(response);
-      
+      console.log(response)     
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log(textStatus, errorThrown);
