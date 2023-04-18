@@ -13,7 +13,13 @@ top('123');
                 $query = "SELECT * FROM sections WHERE status=1";
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_array($result)) {
-                    echo '<li onclick="href(`/forums/'.$row['section_id'].'`)">'.$row['section_name'].'<img src="/public/assets/down.png"></img></li>';
+                    echo '<li>'.$row['section_name'].'</li>';
+                    $section_id = $row['section_id'];
+                    $query1 = "SELECT * FROM subsections WHERE section_id = '$section_id'";
+                    $result1 = mysqli_query($conn, $query1); 
+                    while($row1 = mysqli_fetch_array($result1)) {
+                        echo '<li onclick="href(`/forums/'.$row1['subsection_id'].'`)">'.$row1['subsection_name'].'</p>';
+                    }
                 }
                 ?>      
                 

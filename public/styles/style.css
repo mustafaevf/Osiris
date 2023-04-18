@@ -88,7 +88,7 @@ header {
     gap: 30px;
 }
 main {
-    padding: 30px 80px;
+    padding: 30px 30px;
 }
 .main-container {
     display: flex;

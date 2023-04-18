@@ -7,8 +7,8 @@ if(!is_numeric($page[1])){
     header('Location: /error');
     return;
 }
-$section_id = $page[1];
-$query = "SELECT * FROM sections WHERE section_id='$section_id' AND status=1";
+$subsection_id = $page[1];
+$query = "SELECT * FROM subsections WHERE subsection_id='$subsection_id' AND status=1";
 $result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result) != 1) {
     header('Location: /error');
@@ -16,7 +16,7 @@ if(mysqli_num_rows($result) != 1) {
     $row = mysqli_fetch_array($result);
 }
 
-top('Раздел | '. $row['section_name']);
+top('Раздел | '. $row['subsection_name']);
 
 ?>
 
@@ -24,7 +24,7 @@ top('Раздел | '. $row['section_name']);
     <button class="btn btn-neutral" onclick="href('<?php echo $section_id ?>/create-topic')">Создать тему</button>
     <div class="blocks" style="margin-top: 10px;">
     <?php 
-    $query = "SELECT * FROM topics WHERE subsection_id = '$section_id' AND status = 1";
+    $query = "SELECT * FROM topics WHERE subsection_id = '$subsection_id' AND status = 1";
     $result = mysqli_query($conn, $query);
     while($row = mysqli_fetch_array($result)) {
         echo '<div class="block"><a href="/topic/'.$row['topic_id'].'">
