@@ -13,7 +13,7 @@ top('123');
                 $query = "SELECT * FROM sections WHERE status=1";
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_array($result)) {
-                    echo '<li>'.$row['section_name'].'</li>';
+                    echo '<div class="section-bar">'.$row['section_name'].'</div>';
                     $section_id = $row['section_id'];
                     $query1 = "SELECT * FROM subsections WHERE section_id = '$section_id'";
                     $result1 = mysqli_query($conn, $query1); 
@@ -25,11 +25,46 @@ top('123');
                 
             </ul>
         </div>
-        <div class="main-topics">
-            <div class="block">
-                
+        <div class="main-right">
+            <h3>Темы</h3>
+            <!-- <div class="sub-main">
+                <button class="btn btn-line">Создать тему</button>
+            </div> -->
+            <div class="main-topics">
+            <div class="blocks">
+                <?php 
+                    $query = "SELECT * FROM topics WHERE status=1";
+                    $result = mysqli_query($conn, $query);
+                    while($row = mysqli_fetch_array($result)) {
+                        $user_id = $row['user_id'];
+                        $query1 = "SELECT * FROM users WHERE id='$user_id'";
+                        $result1 = mysqli_query($conn, $query1);
+                        $row_user = mysqli_fetch_array($result1);
+                        echo '<div class="block"><a href="/topic/'.$row['topic_id'].'">
+                        <div class="block-container">
+                           <div class="block-left">
+                               <div class="block-left-title">
+                                   '.$row['title'].'
+                               </div>
+                               <div class="block-left-user">
+                                   <span style="'.$row_user['style'].'">'.$row_user['username'].'</span>
+                               </div>
+                               
+                               
+                           </div>
+                           <div class="block-right">
+                               <span class="date">'.$row['create_date'].'</span>
+                           </div>
+                        </div>
+                       </a>
+                       </div>';
+                    }
+
+                ?>
             </div>
         </div>
+        </div>
+        
     </div>
 </main>
 
