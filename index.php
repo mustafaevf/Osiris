@@ -5,7 +5,6 @@ include "includes/config.php";
 ini_set('display_errors', 1);
 
 
-
 $url = substr($_SERVER['REQUEST_URI'], 1);
 
 if($_SESSION['auth'] == 1) {
@@ -66,6 +65,7 @@ if($url == 'login') {
 
 
 function top($title) {
+    include "includes/config.php";
     echo '<!DOCTYPE html>
             <html lang="en">
             <head>
@@ -97,7 +97,11 @@ function top($title) {
                         } else {
                             echo '<img src="/public/assets/notification.svg" onclick="show(`notification`)"></img>';
                             echo '<img class="profile-photo" src="/public/images/avatars/nophoto.png"></img>';
-                            echo $_SESSION['username'];
+                            $username = $_SESSION['username'];
+                            $query1 = "SELECT * FROM users WHERE username = '$username'";
+                            $result1 = mysqli_query($conn, $query1);
+                            $row = mysqli_fetch_array($result1);
+                            echo '<a href="/user/'.$row['id'].'"><span style="'.$row['style'].'">'.$row['username'].'</span></a>';
                         }
 
     echo '         </div></div>

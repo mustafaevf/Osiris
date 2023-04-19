@@ -1,4 +1,5 @@
 <?php
+include "includes/config.php";
 
 function time_convert($date) {
     $result = '';
@@ -19,6 +20,14 @@ function time_convert($date) {
     }
 
     return $result;
+}
+
+function getUserRowByUsername($username) {
+
+}
+
+function getUserRowByID($id) {
+
 }
 
 ?>
