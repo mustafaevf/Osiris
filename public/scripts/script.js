@@ -28,6 +28,8 @@ function href(link) {
     window.location.href = link;
 }
 
+
+
 function login() {
   const username = $('#auth-login').val();
   const password = $('#auth-password').val();
@@ -159,4 +161,31 @@ function createTopic(forum_id) {
       alert('Ошибка при отправке данных на сервер!');
     }
   });
+}
+
+function createComments(topic_id) {
+  message = $('#comment-message').val();
+  alert(message);
+  if(message.length <= 1) {
+      console.log('[js] заполните поля');
+      return;
+  }
+
+  $.ajax({
+      url: '/core/topic/create-comment.php', 
+      type: 'POST',
+      data: {
+      topic_id: topic_id,
+      message: message
+      },
+      success: function(response) {
+      console.log(response)
+      
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown);
+      alert('Ошибка при отправке данных на сервер!');
+      }
+  });
+
 }

@@ -168,6 +168,8 @@ li:hover {
 input {
     outline: none;
     width: 100%;
+    color: #e9e9e9;
+    background: #333;
     border: 1px solid rgba(0,0,0,.1);
     border-color: rgba(0,0,0,.1);
     border-radius: 5px;
@@ -310,6 +312,10 @@ li img {
     display: flex;
     flex-direction: column;
 }
+.topic-body-description-author img {
+    width: 20px;
+    cursor: pointer;
+}
 .comment {
     display: flex;
     gap: 20px;
@@ -355,5 +361,18 @@ li img {
 .topic-body-description-author {
     display: flex;
     justify-content: space-between;
+}
+.add_comment {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.add_comment input {
+    width: 100%;
+}
+.comment-body-description {
+    color: #e9e9e9;
+    font-size: 14px;
 }
 /* #d9d9e3 */

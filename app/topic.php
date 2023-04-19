@@ -47,9 +47,10 @@ top($row['title']);
                     <span style="<?php echo $row_user['style'];?>"><?php echo $row_user['username']?></span>
                     <?php 
                         if($_SESSION['username'] == $row_user['username']) {
-                            echo '<button class="btn btn-line">Редактировать</button>';
+                            echo '<img src="/public/assets/edit.png"></img>';
                         } else {
-                            echo '<button class="btn btn-line">Пожаловаться</button>';
+                            echo '<img src="/public/assets/flag.png"></img>';
+                            
                         }
                     ?>
                     
@@ -62,21 +63,33 @@ top($row['title']);
             
         </div>
         <div class="topic-comments">
-            <div class="comment">
-                <div class="comment-avatar">
-                    <img src="/public/images/avatars/nophoto.png" alt="">
-                </div>
-                <div class="comment-body">
-                    <div class="comment-body-author">
-                            ghjkjdhsfhsjdfs
+            <?php 
+                $query = "SELECT * FROM comments WHERE topic_id = '$topic_id' AND status = 1";
+                $result = mysqli_query($conn, $query);
+                while($row = mysqli_fetch_array($result)) {
+                    echo '<div class="comment">
+                    <div class="comment-avatar">
+                        <img src="/public/images/avatars/nophoto.png" alt="">
                     </div>
-                    <div class="comment-body-description">
-                        +
+                    <div class="comment-body">
+                        <div class="comment-body-author">
+                            <a href="/user/'.$row['user_id'].'"><span style="'.getUserByID($user_id)['style'].'">'.getUserById($row['user_id'])['username'].'</span></a>
+                        </div>
+                        <div class="comment-body-description">
+                            '.$row['message'].'
+                        </div>
+                        <div class="comment-body-date">
+                            <span class="date">'.time_convert($row['create_date']).'</span>
+                        </div>
                     </div>
-                    <div class="comment-body-date">
-                        3 мая
-                    </div>
-                </div>
+                </div>';
+                }
+
+            ?>
+            
+            <div class="add_comment">
+                <input type="text" placeholder="Введите сообщение" id="comment-message">
+                <button class="btn btn-line" onclick="createComments(<?php echo $topic_id; ?>)">Отправить</button>
             </div>
         </div>
     </div>

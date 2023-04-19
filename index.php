@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "function.php";
-include "includes/config.php";
+
 ini_set('display_errors', 1);
 
 

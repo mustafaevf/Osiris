@@ -1,5 +1,12 @@
 <?php
-include "includes/config.php";
+
+$user = 'root';
+$password = '';
+$host = 'localhost';
+$database = 'osiris';
+$conn = mysqli_connect($host, $user, $password, $database);
+
+
 
 function time_convert($date) {
     $result = '';
@@ -26,8 +33,17 @@ function getUserRowByUsername($username) {
 
 }
 
-function getUserRowByID($id) {
+function getUserByID($id) {
+    $user = 'root';
+    $password = '';
+    $host = 'localhost';
+    $database = 'osiris';
 
+    $conn = mysqli_connect($host, $user, $password, $database);
+    $query = "SELECT * FROM users WHERE id='$id'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_array($result);
+    return $row;
 }
 
 ?>
