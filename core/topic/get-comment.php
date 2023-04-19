@@ -10,7 +10,7 @@ while($row = mysqli_fetch_array($result)) {
     $user_id = $row['user_id'];
     $responce = $responce. '<div class="comment">
     <div class="comment-avatar">
-        <img src="/public/images/avatars/nophoto.png" alt="">
+        <img src="/public/images/avatars/'.getUserByID($user_id)['avatar_image'].'" alt="">
     </div>
     <div class="comment-body">
         <div class="comment-body-author">

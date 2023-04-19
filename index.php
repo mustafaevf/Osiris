@@ -32,6 +32,24 @@ if($_SESSION['auth'] == 1) {
             }
         }
     }
+    if($page[0] == 'user') {
+        if(count($page) == 2) {
+            if(is_numeric($page[1])) {
+                $user_id = $page[1];
+                $query = "SELECT * FROM users WHERE id='$user_id'";
+                $result = mysqli_query($conn, $query);
+                if(mysqli_num_rows($result) != 1) {
+                    header('Location: /error');
+                }
+                include "app/user.php";
+            }
+        }
+        // if(count($page) == 3) {
+        //     if($page[2] == 'create-topic') {
+        //         include "app/create-topic.php";
+        //     }
+        // }
+    }
     if($page[0] == 'topic') {
         if(count($page) == 2) {
             if(is_numeric($page[1])) {
@@ -97,11 +115,11 @@ function top($title) {
                         } else {
                             echo '<img src="/public/assets/email.png" onclick="show(`message`)"></img>';
                             echo '<img src="/public/assets/notification.png" onclick="show(`notification`)"></img>';
-                            echo '<img class="profile-photo" src="/public/images/avatars/nophoto.png"></img>';
                             $username = $_SESSION['username'];
                             $query1 = "SELECT * FROM users WHERE username = '$username'";
                             $result1 = mysqli_query($conn, $query1);
                             $row = mysqli_fetch_array($result1);
+                            echo '<img class="profile-photo" src="/public/images/avatars/'.$row['avatar_image'].'"></img>';
                             echo '<a href="/user/'.$row['id'].'"><span style="'.$row['style'].'">'.$row['username'].'</span></a>';
                         }
 

@@ -29,8 +29,17 @@ function time_convert($date) {
     return $result;
 }
 
-function getUserRowByUsername($username) {
+function getUserByUsername($username) {
+    $user = 'root';
+    $password = '';
+    $host = 'localhost';
+    $database = 'osiris';
 
+    $conn = mysqli_connect($host, $user, $password, $database);
+    $query = "SELECT * FROM users WHERE username='$username'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_array($result);
+    return $row;
 }
 
 function getUserByID($id) {

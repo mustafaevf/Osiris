@@ -40,7 +40,7 @@ top($row['title']);
         </div>
         <div class="topic-body">
             <div class="topic-body-avatar">
-                <img src="/public/images/avatars/nophoto.png" alt="">
+                <img src="/public/images/avatars/<?php echo $row_user['avatar_image']?>" alt="">
             </div>
             <div class="topic-body-description">
                 <div class="topic-body-description-author">
@@ -71,7 +71,7 @@ top($row['title']);
                     $user_id = $row['user_id'];
                     echo '<div class="comment">
                     <div class="comment-avatar">
-                        <img src="/public/images/avatars/nophoto.png" alt="">
+                        <img src="/public/images/avatars/'.getUserByID($user_id)['avatar_image'].'" alt="">
                     </div>
                     <div class="comment-body">
                         <div class="comment-body-author">
