@@ -164,8 +164,9 @@ function createTopic(forum_id) {
 }
 
 function createComments(topic_id) {
+  updateComments(topic_id)
   message = $('#comment-message').val();
-  alert(message);
+  $('#comment-message').val('')
   if(message.length <= 1) {
       console.log('[js] заполните поля');
       return;
@@ -188,4 +189,24 @@ function createComments(topic_id) {
       }
   });
 
+}
+
+function updateComments(topic_id) {
+  console.log(topic_id)
+$.ajax({
+url: '/core/topic/get-comment.php', 
+type: 'GET',
+data: {
+topic_id: topic_id
+},
+success: function(response) {
+console.log('upd')
+console.log(response)
+$('#up-com').html(response);
+},
+error: function(jqXHR, textStatus, errorThrown) {
+console.log(textStatus, errorThrown);
+alert('Ошибка при отправке данных на сервер!');
+}
+});
 }

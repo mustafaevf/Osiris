@@ -7,21 +7,21 @@ if(!is_numeric($page[1])){
     return;
 }
 $section_id = $page[1];
-$query = "SELECT * FROM sections WHERE section_id='$section_id' AND status=1";
+$query = "SELECT * FROM subsections WHERE section_id='$section_id' AND status=1";
 $result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result) != 1) {
     header('Location: /error');
 } else {
     $row = mysqli_fetch_array($result);
 }
-top('Создание темы | '. $row['section_name']);
+top('Создание темы | '. $row['subsection_name']);
 ?>
- <!-- <a href="/section/<?php echo $row['section_id']; ?>"><?php echo $row['section_name']; ?></a> -->
+ <!-- <a href="/forum/<?php echo $row['subsection_id']; ?>"><?php echo $row['subsection_name']; ?></a> -->
 <main>
     <div class="form">
         <div class="input">
             <p>Раздел</p>
-            <input type="text" placeholder="<?php echo $row['section_name'] ?>" disabled>
+            <input type="text" placeholder="<?php echo $row['subsection_name'] ?>" disabled>
         </div>
         <div class="input">
             <p>Заголовок</p>

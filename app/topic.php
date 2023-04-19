@@ -63,10 +63,12 @@ top($row['title']);
             
         </div>
         <div class="topic-comments">
+            <div class="dudas" id="up-com">
             <?php 
-                $query = "SELECT * FROM comments WHERE topic_id = '$topic_id' AND status = 1";
+                $query = "SELECT * FROM comments WHERE topic_id = '$topic_id' AND status = 1 ORDER BY create_date ASC";
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_array($result)) {
+                    $user_id = $row['user_id'];
                     echo '<div class="comment">
                     <div class="comment-avatar">
                         <img src="/public/images/avatars/nophoto.png" alt="">
@@ -86,6 +88,7 @@ top($row['title']);
                 }
 
             ?>
+            </div>
             
             <div class="add_comment">
                 <input type="text" placeholder="Введите сообщение" id="comment-message">
@@ -99,8 +102,13 @@ top($row['title']);
 </main>
 
 
-
 <?php 
 footer();
 
 ?>
+
+<script>
+    
+
+    setInterval(updateComments, 2500, <?php echo $topic_id ?>);
+</script>
