@@ -4,6 +4,7 @@ require_once('index.php');
 $url = substr($_SERVER['REQUEST_URI'], 1);
 $page = explode('/', $url);
 if(!is_numeric($page[1])){
+    // echo 'no numeric';
     header('Location: /error');
     return;
 }

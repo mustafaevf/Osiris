@@ -282,6 +282,7 @@ li img {
     gap: 7px;
 }
 .section-bar {
+    margin-top: 7px;
     margin-bottom: 7px;
     font-weight: bold;
     font-size: 14px;

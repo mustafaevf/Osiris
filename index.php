@@ -18,7 +18,7 @@ if($_SESSION['auth'] == 1) {
         if(count($page) == 2) {
             if(is_numeric($page[1])) {
                 $section_id = $page[1];
-                $query = "SELECT * FROM sections WHERE section_id='$section_id' AND status=1";
+                $query = "SELECT * FROM subsections WHERE subsection_id='$section_id' AND status=1";
                 $result = mysqli_query($conn, $query);
                 if(mysqli_num_rows($result) != 1) {
                     header('Location: /error');
