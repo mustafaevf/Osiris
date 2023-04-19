@@ -34,7 +34,7 @@ top('Раздел | '. $row['subsection_name']);
                     $query1 = "SELECT * FROM subsections WHERE section_id = '$section_id'";
                     $result1 = mysqli_query($conn, $query1); 
                     while($row1 = mysqli_fetch_array($result1)) {
-                        echo '<li onclick="href(`/forums/'.$row1['subsection_id'].'`)">'.$row1['subsection_name'].'</p>';
+                        echo '<li onclick="href(`/forums/'.$row1['subsection_id'].'`)">'.$row1['subsection_name'].'</li>';
                     }
                 }
                 ?>      
