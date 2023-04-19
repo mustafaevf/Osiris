@@ -11,7 +11,7 @@ if($_SESSION['auth'] == 1) {
     $page = explode('/', $url);
     if(count($page) == 2) {
         if($page[0] == 'users') {
-            echo 'users/'. $page[1].'/';
+            echo 'user/'. $page[1].'/';
         }
     }
     if($page[0] == 'forums') {
@@ -95,7 +95,8 @@ function top($title) {
                         if($_SESSION['auth'] != 1) {
                             echo '<button class="btn btn-line" onclick="href(`login`)">Авторизация</button><button class="ml-5 btn btn-outline" onclick="href(`register`)">Регистрация</button>';
                         } else {
-                            echo '<img src="/public/assets/notification.svg" onclick="show(`notification`)"></img>';
+                            echo '<img src="/public/assets/email.png" onclick="show(`message`)"></img>';
+                            echo '<img src="/public/assets/notification.png" onclick="show(`notification`)"></img>';
                             echo '<img class="profile-photo" src="/public/images/avatars/nophoto.png"></img>';
                             $username = $_SESSION['username'];
                             $query1 = "SELECT * FROM users WHERE username = '$username'";
