@@ -35,7 +35,7 @@ top($row['title']);
                 <?php echo $row['title']?>
             </div>
             <div class="topic-header-date">
-                <span class="date"><?php echo $row['create_date']?></span>
+                <span class="date"><?php echo time_convert($row['create_date'])?></span>
             </div>
         </div>
         <div class="topic-body">
@@ -57,7 +57,7 @@ top($row['title']);
                 <div class="topic-body-sod">
                     <?php echo $row['description'] ?>
                 </div>
-                <span class="date"><?php echo $row['create_date']?></span>
+                <span class="date"><?php echo time_convert($row['create_date'])?></span>
             </div>
             
         </div>

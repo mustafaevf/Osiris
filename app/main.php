@@ -53,7 +53,7 @@ top('123');
                                
                            </div>
                            <div class="block-right">
-                               <span class="date">'.$row['create_date'].'</span>
+                               <span class="date">'.time_convert($row['create_date']).'</span>
                            </div>
                         </div>
                        </a>
