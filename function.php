@@ -55,4 +55,23 @@ function getUserByID($id) {
     return $row;
 }
 
+
+function setActive($id, $text) {
+    $user = 'root';
+    $password = '';
+    $host = 'localhost';
+    $database = 'osiris';
+
+    $conn = mysqli_connect($host, $user, $password, $database);
+    $query = "SELECT * FROM users WHERE id='$id'";
+    $result = mysqli_query($conn, $query);
+    if(mysqli_num_rows($result) == 0) {
+        return 'error';
+    }
+    $last_login = date("Y-m-d H:i:s");
+    $query = "UPDATE users SET last_login='$last_login' WHERE id='$id'";
+    $result = mysqli_query($conn, $query);
+    $query = "UPDATE users SET active='$text' WHERE id='$id'";
+    $result = mysqli_query($conn, $query);
+}
 ?>

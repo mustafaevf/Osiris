@@ -21,6 +21,8 @@ $query1 = "SELECT * FROM users WHERE id='$user_id'";
 $result1 = mysqli_query($conn, $query1);
 $row_user = mysqli_fetch_array($result1);
 
+setActive(getUserByUsername($_SESSION['username'])['id'],'Смотрит тему '. $row['title']);
+
 top($row['title']);
 
 ?>
