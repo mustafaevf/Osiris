@@ -26,11 +26,12 @@ top('123');
             </ul>
         </div>
         <div class="main-right">
-            <h3>Темы</h3>
+            
             <!-- <div class="sub-main">
                 <button class="btn btn-line">Создать тему</button>
             </div> -->
             <div class="main-topics">
+            <h3>Темы</h3>
             <div class="blocks">
                 <?php 
                     $query = "SELECT * FROM topics WHERE status=1";

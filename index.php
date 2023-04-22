@@ -82,6 +82,7 @@ if($url == 'login') {
 
 
 
+
 function top($title) {
     include "includes/config.php";
     echo '<!DOCTYPE html>
@@ -94,8 +95,9 @@ function top($title) {
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link rel="stylesheet" href="/public/styles/style.css">
+                <script src="/public/scripts/jquery.min.js"></script>
                 <title>'.$title.'</title>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                
             </head>
             <body> 
                 
