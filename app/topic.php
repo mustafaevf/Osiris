@@ -22,9 +22,17 @@ $result1 = mysqli_query($conn, $query1);
 $row_user = mysqli_fetch_array($result1);
 
 setActive(getUserByUsername($_SESSION['username'])['id'],'Смотрит тему '. $row['title']);
+$who_watch = getUserByUsername($_SESSION['username'])['id'];
 
 top($row['title']);
 
+$query = "SELECT * FROM views WHERE topic_id='$topic_id' AND user_id='$who_watch'";
+$result = mysqli_query($conn, $query);
+$num_watch = mysqli_num_rows($result);
+if($num_watch == 0) {
+    $query = "INSERT INTO views(user_id, topic_id) VALUES('$who_watch', '$topic_id')";
+    $result = mysqli_query($conn, $query);
+}
 ?>
 
 <main>
@@ -69,6 +77,12 @@ top($row['title']);
                         echo $num_likes;
                     ?>
                     <img src="/public/assets/like.png" onclick="like_topic(<?php echo $topic_id; ?>)">
+                    <?php 
+                        $query_views = "SELECT * FROM views WHERE topic_id = '$topic_id'";
+                        $views = mysqli_query($conn, $query_views);
+                        $num_views = mysqli_num_rows($views);
+                        echo $num_views;
+                    ?>
                     <img src="/public/assets/eye.png" alt="">
                 </div>
                 
