@@ -28,7 +28,41 @@ function href(link) {
     window.location.href = link;
 }
 
+function like_topic(topic_id) {
+  $.ajax({
+    url: '/core/topic/like-topic.php', 
+    type: 'POST',
+    data: {
+      topic_id: topic_id
+    },
+    success: function(response) {
+      console.log(response)
+      
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown);
+      alert('Ошибка при отправке данных на сервер!');
+    }
+  });
+}
 
+function like_comment(comment_id) {
+  $.ajax({
+    url: '/core/comment/like-comment.php', 
+    type: 'POST',
+    data: {
+      comment_id: comment_id
+    },
+    success: function(response) {
+      console.log(response)
+      
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown);
+      alert('Ошибка при отправке данных на сервер!');
+    }
+  });
+}
 
 function login() {
   const username = $('#auth-login').val();
@@ -175,7 +209,7 @@ function createComments(topic_id) {
   }
 
   $.ajax({
-      url: '/core/topic/create-comment.php', 
+      url: '/core/comment/create-comment.php', 
       type: 'POST',
       data: {
       topic_id: topic_id,
@@ -194,7 +228,7 @@ function createComments(topic_id) {
 
 function updateComments(topic_id) {
 $.ajax({
-url: '/core/topic/get-comment.php', 
+url: '/core/comment/get-comment.php', 
 type: 'GET',
 data: {
 topic_id: topic_id

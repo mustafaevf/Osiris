@@ -61,6 +61,17 @@ top($row['title']);
                     <?php echo $row['description'] ?>
                 </div>
                 <span class="date"><?php echo time_convert($row['create_date'])?></span>
+                <div class="topic-footer">
+                    <?php 
+                        $query_like = "SELECT * FROM likes WHERE topic_id = '$topic_id'";
+                        $likes = mysqli_query($conn, $query_like);
+                        $num_likes = mysqli_num_rows($likes);
+                        echo $num_likes;
+                    ?>
+                    <img src="/public/assets/like.png" onclick="like_topic(<?php echo $topic_id; ?>)">
+                    <img src="/public/assets/eye.png" alt="">
+                </div>
+                
             </div>
             
         </div>
@@ -71,6 +82,11 @@ top($row['title']);
                 $result = mysqli_query($conn, $query);
                 while($row = mysqli_fetch_array($result)) {
                     $user_id = $row['user_id'];
+                    $comment_id = $row['id'];
+                    $query_like = "SELECT * FROM likes WHERE comment_id = '$comment_id'";
+                    $likes = mysqli_query($conn, $query_like);
+                    $num_likes = mysqli_num_rows($likes);
+                   
                     echo '<div class="comment">
                     <div class="comment-avatar">
                         <img src="/public/images/avatars/'.getUserByID($user_id)['avatar_image'].'" alt="">
@@ -83,7 +99,7 @@ top($row['title']);
                             '.$row['message'].'
                         </div>
                         <div class="comment-body-date">
-                            <span class="date">'.time_convert($row['create_date']).'</span>
+                            <span class="date">'.time_convert($row['create_date']).' '.$num_likes.' <img src="/public/assets/like.png" onclick="like_comment(`'.$comment_id.'`)"></span>
                         </div>
                     </div>
                 </div>';

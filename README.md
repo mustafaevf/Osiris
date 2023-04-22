@@ -1,13 +1,13 @@
 # Osiris
 Web Forum
 
-#Develompent:
+Develompent:
 - Login, Register, Recovery
 - Create Topic
 - View Topics In Section
+- Comment Topic
 
-
-#What should to do:
+What should to do:
 - System notification
 - Message send and get
 - Like and disrespect
@@ -15,3 +15,4 @@ Web Forum
 - API 
 - Edit Profile
 - Smart lenta
+

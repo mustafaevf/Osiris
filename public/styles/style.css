@@ -23,6 +23,16 @@ a, a:hover {
     align-items: center;
     gap: 20px;
 }
+.topic-footer img {
+    width: 20px;
+    height: 20px;
+    
+}
+.topic-footer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
 .header-menu img {
     width: 20px;
