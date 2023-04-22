@@ -48,7 +48,9 @@ function login() {
     },
     success: function(response) {
       console.log(response)
-      alert(response);
+      if(response == '[login] ok') {
+        href('/')
+      }
       
     },
     error: function(jqXHR, textStatus, errorThrown) {
@@ -180,7 +182,6 @@ function createComments(topic_id) {
       message: message
       },
       success: function(response) {
-      console.log(response)
       
       },
       error: function(jqXHR, textStatus, errorThrown) {
@@ -192,7 +193,6 @@ function createComments(topic_id) {
 }
 
 function updateComments(topic_id) {
-  console.log(topic_id)
 $.ajax({
 url: '/core/topic/get-comment.php', 
 type: 'GET',
@@ -200,8 +200,6 @@ data: {
 topic_id: topic_id
 },
 success: function(response) {
-console.log('upd')
-console.log(response)
 $('#up-com').html(response);
 },
 error: function(jqXHR, textStatus, errorThrown) {
