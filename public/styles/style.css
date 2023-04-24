@@ -5,7 +5,7 @@
 }
 body {
     /* background: #f1f3f6; */
-    background-color: #333;
+    background-color: #1a2c38;
     font-family: sans-serif;
     word-wrap: break-word;
     line-height: 1.28;
@@ -82,11 +82,13 @@ span {
 }
 header {
     color: #bdbdbd;
+    height: 60px;
     font-weight: 500;
-    background: #2c2c2c;
+    
+    background: #1a2c38;
+    box-shadow: #0003 0 4px 6px -1px, #0000001f 0 2px 4px -1px;
+    padding: 0 3vw;
     width: 100%;
-    border-bottom: 1px solid #444444;
-    padding: 0 80px;
 }
 .header-sub {
     display: flex;

@@ -20,9 +20,9 @@ if($_SESSION['auth'] == 1) {
                 $section_id = $page[1];
                 $query = "SELECT * FROM subsections WHERE subsection_id='$section_id' AND status=1";
                 $result = mysqli_query($conn, $query);
-                if(mysqli_num_rows($result) != 1) {
-                    header('Location: /error');
-                }
+                // if(mysqli_num_rows($result) != 1) {
+                //     header('Location: /error');
+                // }
                 include "app/forums.php";
             }
         }
@@ -64,7 +64,7 @@ if($_SESSION['auth'] == 1) {
         }
     }
 } else {
-
+    
 }
 
 

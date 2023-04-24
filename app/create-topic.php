@@ -2,12 +2,12 @@
 
 $url = substr($_SERVER['REQUEST_URI'], 1);
 $page = explode('/', $url);
-if(!is_numeric($page[1])){
-    header('Location: /error');
-    return;
-}
+// if(!is_numeric($page[1])){
+//     header('Location: /error');
+//     return;
+// }
 $section_id = $page[1];
-$query = "SELECT * FROM subsections WHERE section_id='$section_id' AND status=1";
+$query = "SELECT * FROM subsections WHERE subsection_id='$section_id' AND status=1";
 $result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result) != 1) {
     header('Location: /error');
