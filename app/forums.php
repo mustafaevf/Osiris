@@ -22,33 +22,11 @@ top('Раздел | '. $row['subsection_name']);
 
 ?>
 
-<main>
-    <div class="main-container">
-        <div class="main-menu">
-            <ul>
-                <?php 
-                $query = "SELECT * FROM sections WHERE status=1";
-                $result = mysqli_query($conn, $query);
-                while($row = mysqli_fetch_array($result)) {
-                    echo '<div class="section-bar">'.$row['section_name'].'</div>';
-                    $section_id = $row['section_id'];
-                    $query1 = "SELECT * FROM subsections WHERE section_id = '$section_id'";
-                    $result1 = mysqli_query($conn, $query1); 
-                    while($row1 = mysqli_fetch_array($result1)) {
-                        echo '<li onclick="href(`/forums/'.$row1['subsection_id'].'`)">'.$row1['subsection_name'].'</li>';
-                    }
-                }
-                ?>      
-                
-            </ul>
-        </div>
-        <div class="main-right">
-            <h3>Темы в разделе <?php echo $name_section ?></h3>
-            <!-- <div class="sub-main">
-                <button class="btn btn-line">Создать тему</button>
-            </div> -->
-            <div class="main-topics">
-            <div class="blocks">
+<div class="main-content">
+    <div class="main-content-title">
+        <h1>Темы в разделе <?php echo $name_section ?></h1>
+    </div>
+    <div class="blocks">
                 <?php 
                     $query = "SELECT * FROM topics WHERE subsection_id = '$subsection_id' AND status = 1";
                     $result = mysqli_query($conn, $query);
@@ -79,45 +57,9 @@ top('Раздел | '. $row['subsection_name']);
 
                 ?>
             </div>
-        </div>
-        </div>
-        
-    </div>
-</main>
-
-<!-- 
-<div class="container">
-    <button class="btn btn-neutral" onclick="href('<?php echo $section_id ?>/create-topic')">Создать тему</button>
-    <div class="blocks" style="margin-top: 10px;">
-    <?php 
-    $query = "SELECT * FROM topics WHERE subsection_id = '$subsection_id' AND status = 1";
-    $result = mysqli_query($conn, $query);
-    while($row = mysqli_fetch_array($result)) {
-        echo '<div class="block"><a href="/topic/'.$row['topic_id'].'">
-         <div class="block-container">
-            <div class="block-left">
-                <div class="block-left-title">
-                    '.$row['title'].'
-                </div>
-                <div class="block-left-user">
-                    '.$row['user_id'].'
-                </div>
-                
-                
-            </div>
-            <div class="block-right">
-                '.$row['create_date'].'
-            </div>
-         </div>
-        </a>
-        </div>';
-        
-    }
-
-    ?>
-    </div>
-</div> -->
-
+</div>
+<main>
+    
 
 <?php 
 footer();

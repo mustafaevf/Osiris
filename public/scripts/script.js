@@ -35,6 +35,18 @@ function close(param) {
   $('#modal-login').css('display', 'none');
 
 }
+
+$('#dropdown-forums').click(function(e) {
+  e.stopPropagation();
+  if( $('.dropped-forums').css('display') === 'none') {
+    $('.dropped-forums').css('display', 'block');
+  } else {
+    $('.dropped-forums').css('display', 'none')
+  }
+ 
+  
+})
+
 // $('#list-information').hover(function() {
 //   if($('.popup-information').hasClass('show-off')) {
 //     $('.popup-information').removeClass('show-off');

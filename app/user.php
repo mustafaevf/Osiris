@@ -32,6 +32,36 @@ setActive(getUserByUsername($_SESSION['username'])['id'],'Смотрит про�
     <div class="main-content-title">
         <h1><?php echo $row['username']?></h1>
     </div>
+    <div class="main-content-body">
+        <div class="main-content-other">
+            <div class="main-content-other-left">
+                <a href="/user/<?php echo $user_id;?>" class="active">Информация</a>
+                <a href="/user/<?php echo $user_id;?>/achievement">Достижения</a>
+                <a href="/user/<?php echo $user_id;?>/topics">Темы</a>
+                <a href="">Жалобы</a>
+                <?php 
+                if($user_id == $_SESSION['id']) echo '<a href="/user/'.$user_id.'/edit">Редактировать</a>';
+                ?>
+            </div>
+            <div class="main-content-other-right">
+                <div class="card">
+                    <div class="user-card">
+                        <div class="img-content">
+                            <img src="/public/images/avatars/<?php echo $row['avatar_image']; ?>" alt="">
+                            <span><?php echo $row['active']; ?></span>
+                        </div>
+                        
+                        <div class="input">
+                            <span>Имя пользователя</span>
+                            <input type="text" disabled value="<?php echo $row['username']; ?>">
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
