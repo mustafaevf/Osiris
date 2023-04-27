@@ -100,51 +100,59 @@ function top($title) {
                 
             </head>
             <body> 
-                
-                <header>
-                    <div class="header-container">
-                        <div class="header-logo">   
-                            <div class="logo" onclick="href(`/`)">logo</div>
-                            <div class="header-sub">
-                                <div class="header-sub-list" id="list-information" onclick="show(`info`)">Информация <img src="/public/assets/down.png"></div>
-                            </div>
+            <div class="wrap">
+            <div class="modal" id="modal-login">
+                <div class="overlay" onclick=close()></div>
+                <div class="modal-card">
+                    <div class="modal-card-header">Авторизация</div>
+                    <div class="modal-card-content">
+                        <div class="input">
+                            <span>Логин</span>
+                            <input type="text" onkeyup="filterAuthLogin()" id="auth-login">
+                            <span class="error">Ошибка</span>
                         </div>
-                        <div class="header-menu">';
-
-                        
-                        if($_SESSION['auth'] != 1) {
-                            echo '<button class="btn btn-line" onclick="href(`login`)">Авторизация</button><button class="ml-5 btn btn-outline" onclick="href(`register`)">Регистрация</button>';
+                        <div class="input">
+                            <span>Пароль</span>
+                            <input type="password" id="auth-password" onkeyup="filterAuthPassword()">
+                            <span class="error">Ошибка</span>
+                        </div>
+                        <button class="v1" onclick="login()">Войти</button>
+                    </div>
+                </div>
+            </div>
+                <div class="left-sidebar">
+                    <div class="left-sidebar-header"></div>
+                    <div class="left-sidebar-content">
+                        <a href=""><span>Разделы</span></a>
+                        <a href=""><span>Пользователи</span></a>
+                        <a href=""><span>О нас</span></a>
+                    </div>
+                </div>
+                <div class="main">
+                    <div class="main-header">
+                        <div class="main-logo">
+                            <a href="/">osiris</a>
+                        </div>
+                        <div class="main-links">
+                        '; 
+                        if($_SESSION['auth'] == 1) {
+                            echo '<a href="/user/'.$_SESSION['id'].'">'.getUserByID($_SESSION['id'])['username'].'</a>';
                         } else {
-                            echo '<img src="/public/assets/email.png" onclick="show(`message`)"></img>';
-                            echo '<img src="/public/assets/notification.png" onclick="show(`notification`)"></img>';
-                            $username = $_SESSION['username'];
-                            $query1 = "SELECT * FROM users WHERE username = '$username'";
-                            $result1 = mysqli_query($conn, $query1);
-                            $row = mysqli_fetch_array($result1);
-                            echo '<img class="profile-photo" src="/public/images/avatars/'.$row['avatar_image'].'"></img>';
-                            echo '<a href="/user/'.$row['id'].'"><span style="'.$row['style'].'">'.$row['username'].'</span></a>';
+                            echo '
+                            <button class="v1" onclick=show(`login`)>Войти</button>';
                         }
-
-    echo '         </div></div>
-                </header>';
+                        
+                        echo '</div>
+                    </div>';
 
 }
 
 function footer() {
     echo '<script src="/public/scripts/script.js"></script>
-            <div class="popup popup-information show-off">
-                <ul>
-                    <li><a href="/pages/rules">Правила</a></li>
-                    <li><a href="/pages/about">О нас</a></li>
-                </ul>
-            </div>
-            <div class="popup popup-notification show-off">
-                <ul>
-
-                </ul>
-            </div>
-            </body>
-        </html>';
+    </div>
+    </div>
+</body>
+</html>';
     
 }
 

@@ -15,6 +15,25 @@ function show(param) {
     }
     
   }
+  if(param == 'login') {
+    $('#modal-login').css('display', 'flex');
+  }
+}
+
+$(document).keydown(function(e) {
+  if (e.keyCode === 27) {
+    e.stopPropagation();
+    $('#modal-login').fadeOut();
+  }
+});
+
+$('.overlay').click(function(e) {
+  $('#modal-login').fadeOut();
+});	
+
+function close(param) {
+  $('#modal-login').css('display', 'none');
+
 }
 // $('#list-information').hover(function() {
 //   if($('.popup-information').hasClass('show-off')) {
@@ -23,6 +42,7 @@ function show(param) {
 //     $('.popup-information').addClass('show-off');
 //   }
 // })
+
 
 function href(link) {
     window.location.href = link;

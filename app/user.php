@@ -28,34 +28,12 @@ setActive(getUserByUsername($_SESSION['username'])['id'],'Смотрит про�
 
 
 ?>
-<main>
-    <div class="user-block">
-        <div class="user-block-image">
-            <img src="/public/images/avatars/<?php echo $row['avatar_image']?>">
-        </div>
-        <div class="user-block-info">
-            <div class="user-block-info-top">
-                <span style="<?php echo getUserByID($user_id)['style']?>"><?php echo $row['username']?></span>
-                <?php 
-                    if($_SESSION['username'] == $row['username']) {
-                        echo '<img src="/public/assets/edit.png" alt="">';
-                    }
-                ?>
-                
-                
-                
-            </div>
-            <div class="user-block-inf-ba">
-                <span class="date">Последний заход: <?php echo time_convert($row['last_login'])?> <?php echo $row['active']; ?></span>
-
-                <span>Регистрация: <?php echo time_convert($row['date_register'])?></span>
-                <span>Количество тем: <?php echo $num_topics;?></span>
-                <span>Количество сообщений: <?php echo $num_messages;?></span>
-            </div>
-        </div>
-        
+<div class="main-content">
+    <div class="main-content-title">
+        <h1><?php echo $row['username']?></h1>
     </div>
-    
-</main>
+</div>
+
+
 
 <?php footer(); ?>
