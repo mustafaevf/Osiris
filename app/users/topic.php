@@ -35,9 +35,9 @@ setActive(getUserByUsername($_SESSION['username'])['id'],'Смотрит про�
     <div class="main-content-body">
         <div class="main-content-other">
             <div class="main-content-other-left">
-                <a href="/user/<?php echo $user_id;?>" class="active">Информация</a>
+                <a href="/user/<?php echo $user_id;?>">Информация</a>
                 <a href="/user/<?php echo $user_id;?>/achievements">Достижения</a>
-                <a href="/user/<?php echo $user_id;?>/topics">Темы</a>
+                <a href="/user/<?php echo $user_id;?>/topics" class="active">Темы</a>
                 <a href="">Жалобы</a>
                 <?php 
                 if($user_id == $_SESSION['id']) echo '<a href="/user/'.$user_id.'/edit">Редактировать</a>';
@@ -45,17 +45,31 @@ setActive(getUserByUsername($_SESSION['username'])['id'],'Смотрит про�
             </div>
             <div class="main-content-other-right">
                 <div class="card">
-                    <div class="user-card">
-                        <div class="img-content">
-                            <img src="/public/images/avatars/<?php echo $row['avatar_image']; ?>" alt="">
-                            <span><?php echo $row['active']; ?></span>
-                        </div>
-                        
-                        <div class="input">
-                            <span>Имя пользователя</span>
-                            <input type="text" disabled value="<?php echo $row['username']; ?>">
-                        </div>
-                        
+                    <div class="theme-blocks">
+                        <?php 
+                            $query = "SELECT * FROM topics WHERE user_id='$user_id'";
+                            $result = mysqli_query($conn, $query);
+                            $i = 0;
+                            while($row = mysqli_fetch_array($result)) {
+                                
+                                if($i % 2 == 0) {
+                                    $theme = 'theme-grey';
+                                } else {
+                                    $theme = 'theme-black';
+                                }
+                                echo '<a href="/topic/'.$row['topic_id'].'"><div class="theme-blocks-block '.$theme.'">
+                                <div class="theme-block-title">'.$row['title'].'</div>
+                                <div class="theme-block-user">
+                                    <img src="/public/images/avatars/'.getUserByID($row['user_id'])['avatar_image'].'" alt="">
+                                    <span>'.getUserByID($row['user_id'])['username'].'</span>
+                                </div>
+                                <div class="theme-block-date">'.time_convert($row['create_date']).'</div>
+                                </div></a>';
+                                $i++;   
+                            }
+
+                        ?>
+            
                     </div>
                     
                 </div>

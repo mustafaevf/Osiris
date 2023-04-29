@@ -22,6 +22,9 @@ $num_topics = mysqli_num_rows(mysqli_query($conn, $query));
 
 $query = "SELECT * FROM comments WHERE user_id='$user_id'";
 $num_messages = mysqli_num_rows(mysqli_query($conn, $query));
+
+$query = "SELECT * FROM likes WHERE user_id='$user_id'";
+$num_likes = mysqli_num_rows(mysqli_query($conn, $query));
 top('Пользователь - '. $row['username']);
 
 setActive(getUserByUsername($_SESSION['username'])['id'],'Смотрит профиль пользователя '. $row['username']);
@@ -35,8 +38,8 @@ setActive(getUserByUsername($_SESSION['username'])['id'],'Смотрит про�
     <div class="main-content-body">
         <div class="main-content-other">
             <div class="main-content-other-left">
-                <a href="/user/<?php echo $user_id;?>" class="active">Информация</a>
-                <a href="/user/<?php echo $user_id;?>/achievements">Достижения</a>
+                <a href="/user/<?php echo $user_id;?>">Информация</a>
+                <a href="/user/<?php echo $user_id;?>/achievements" class="active">Достижения</a>
                 <a href="/user/<?php echo $user_id;?>/topics">Темы</a>
                 <a href="">Жалобы</a>
                 <?php 
@@ -45,19 +48,21 @@ setActive(getUserByUsername($_SESSION['username'])['id'],'Смотрит про�
             </div>
             <div class="main-content-other-right">
                 <div class="card">
-                    <div class="user-card">
-                        <div class="img-content">
-                            <img src="/public/images/avatars/<?php echo $row['avatar_image']; ?>" alt="">
-                            <span><?php echo $row['active']; ?></span>
+                    <div class="block-achievements-rating">
+                        <div class="block-rating">
+                            Количество тем: <?php echo $num_topics?>
                         </div>
-                        
-                        <div class="input">
-                            <span>Имя пользователя</span>
-                            <input type="text" disabled value="<?php echo $row['username']; ?>">
+                        <div class="block-rating">
+                            Количество сообщений: <?php echo $num_messages?>
                         </div>
+                        <div class="block-rating">
+                            Количество лайков: <?php echo $num_likes?>
+                        </div>
+                    </div>
+                    <div class="line">
                         
                     </div>
-                    
+                    <span>Трофеи</span>
                 </div>
             </div>
         </div>

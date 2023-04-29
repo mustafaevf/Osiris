@@ -29,6 +29,7 @@ $(document).keydown(function(e) {
 
 $('.overlay').click(function(e) {
   $('#modal-login').fadeOut();
+  $('#modal-info').fadeOut();
 });	
 
 function close(param) {
@@ -47,6 +48,33 @@ $('#dropdown-forums').click(function(e) {
   
 })
 
+$('#dropdown-profile').click(function(e) {
+  $('#popup-notification').css('display', 'none');
+  if( $('#popup-user').css('display') === 'none') {
+    $('#popup-user').css('display', 'block');
+    
+  } else {
+    $('#popup-user').css('display', 'none')
+  }
+
+})
+$('#dropdown-notification').click(function(e) {
+  $('#popup-user').css('display', 'none')
+  if( $('#popup-notification').css('display') === 'none') {
+    $('#popup-notification').css('display', 'block');
+  } else {
+    $('#popup-notification').css('display', 'none')
+  }
+
+})
+
+$('.comment-blocks-block').hover(function(e) {
+  $(this).find('.main-content-header-right').css('display', 'flex');
+})
+
+$('.comment-blocks-block').mouseleave(function(e) {
+  $(this).find('.main-content-header-right').css('display', 'none');
+});
 // $('#list-information').hover(function() {
 //   if($('.popup-information').hasClass('show-off')) {
 //     $('.popup-information').removeClass('show-off');
@@ -68,8 +96,11 @@ function like_topic(topic_id) {
       topic_id: topic_id
     },
     success: function(response) {
-      console.log(response)
-      
+      if(response !== 'ok' || response !== 'err') {
+        $('#modal-info-text').html(response)
+        $('#modal-info').css('display', 'flex');
+        
+      }
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log(textStatus, errorThrown);
@@ -86,7 +117,11 @@ function like_comment(comment_id) {
       comment_id: comment_id
     },
     success: function(response) {
-      console.log(response)
+      if(response !== 'ok' || response !== 'err') {
+        $('#modal-info-text').html(response)
+        $('#modal-info').css('display', 'flex');
+        
+      }
       
     },
     error: function(jqXHR, textStatus, errorThrown) {

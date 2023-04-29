@@ -26,6 +26,9 @@ $who_watch = getUserByUsername($_SESSION['username'])['id'];
 
 top($row['title']);
 
+$query = "SELECT * FROM likes WHERE topic_id='$topic_id'";
+$num_likes = mysqli_num_rows(mysqli_query($conn, $query));
+
 $query = "SELECT * FROM views WHERE topic_id='$topic_id' AND user_id='$who_watch'";
 $result = mysqli_query($conn, $query);
 $num_watch = mysqli_num_rows($result);
@@ -35,104 +38,82 @@ if($num_watch == 0) {
 }
 ?>
 
-<main>
-    <div class="routes">
-        <!-- add routes -->
+<div class="main-content">
+    <div class="main-content-header">
+        <div class="main-content-header-left">
+            <div class="main-content-image">
+                <img src="/public/images/avatars/<?php echo getUserByID($user_id)['avatar_image']?>" alt="">
+            </div>
+            <div class="main-content-information">
+                <div class="main-content-information-title">
+                    <?php echo $row['title'] ?>
+                </div>
+                <div class="main-content-information-date">
+                    <?php echo time_convert($row['create_date']) ?>
+                </div>
+            </div>
+        </div>
+        <div class="main-content-header-right">
+            <div class="r_icon">
+                <span><?php echo $num_likes;?></span>
+                <div class="r_icon-contest">
+                    <img src="/public/assets/like.png" onclick="like_topic(<?php echo $topic_id; ?>)" alt="">
+                </div>
+            </div>
+            <div class="r_icon">
+                <div class="r_icon-contest">
+                    <img src="/public/assets/flag.png" alt="">
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="topic-main">
-        <div class="topic-header">
-            <div class="topic-header-title">
-                <?php echo $row['title']?>
-            </div>
-            <div class="topic-header-date">
-                <span class="date"><?php echo time_convert($row['create_date'])?></span>
-            </div>
-        </div>
-        <div class="topic-body">
-            <div class="topic-body-avatar">
-                <img src="/public/images/avatars/<?php echo $row_user['avatar_image']?>" alt="">
-            </div>
-            <div class="topic-body-description">
-                <div class="topic-body-description-author">
-                    <span style="<?php echo $row_user['style'];?>"><?php echo $row_user['username']?></span>
-                    <?php 
-                        if($_SESSION['username'] == $row_user['username']) {
-                            echo '<img src="/public/assets/edit.png"></img>';
-                        } else {
-                            echo '<img src="/public/assets/flag.png"></img>';
-                            
-                        }
-                    ?>
-                    
-                </div>
-                <div class="topic-body-sod">
-                    <?php echo $row['description'] ?>
-                </div>
-                <span class="date"><?php echo time_convert($row['create_date'])?></span>
-                <div class="topic-footer">
-                    <?php 
-                        $query_like = "SELECT * FROM likes WHERE topic_id = '$topic_id'";
-                        $likes = mysqli_query($conn, $query_like);
-                        $num_likes = mysqli_num_rows($likes);
-                        echo $num_likes;
-                    ?>
-                    <img src="/public/assets/like.png" onclick="like_topic(<?php echo $topic_id; ?>)">
-                    <?php 
-                        $query_views = "SELECT * FROM views WHERE topic_id = '$topic_id'";
-                        $views = mysqli_query($conn, $query_views);
-                        $num_views = mysqli_num_rows($views);
-                        echo $num_views;
-                    ?>
-                    <img src="/public/assets/eye.png" alt="">
-                </div>
-                
-            </div>
-            
-        </div>
-        <div class="topic-comments">
-            <div class="dudas" id="up-com">
+    <div class="main-content-body-topic">
+        <?php echo $row['description']?>
+    </div>
+    <div class="comment-blocks">
             <?php 
-                $query = "SELECT * FROM comments WHERE topic_id = '$topic_id' AND status = 1 ORDER BY create_date ASC";
+                $query = "SELECT * FROM comments WHERE status=1 AND topic_id='$topic_id'";
                 $result = mysqli_query($conn, $query);
+                $i = 0;
                 while($row = mysqli_fetch_array($result)) {
-                    $user_id = $row['user_id'];
                     $comment_id = $row['id'];
-                    $query_like = "SELECT * FROM likes WHERE comment_id = '$comment_id'";
-                    $likes = mysqli_query($conn, $query_like);
-                    $num_likes = mysqli_num_rows($likes);
-                   
-                    echo '<div class="comment">
-                    <div class="comment-avatar">
-                        <img src="/public/images/avatars/'.getUserByID($user_id)['avatar_image'].'" alt="">
+                    $query1 = "SELECT * FROM likes WHERE comment_id='$comment_id'";
+                    $num_likes = mysqli_num_rows(mysqli_query($conn, $query1));
+                    if($i % 2 == 0) {
+                        $theme = 'theme-grey';
+                    } else {
+                        $theme = 'theme-black';
+                    }
+                    echo '<div class="comment-blocks-block '.$theme.'" >
+                    <div style="display: flex; flex-direction: column;">
+                    <div class="comment-block-title">'.$row['message'].'</div>
+                    <div class="comment-block-user">
+                        <img src="/public/images/avatars/'.getUserByID($row['user_id'])['avatar_image'].'" alt="">
+                        <span><a href="/user/'.$row['user_id'].'">'.getUserByID($row['user_id'])['username'].'</span></a>
                     </div>
-                    <div class="comment-body">
-                        <div class="comment-body-author">
-                            <a href="/user/'.$row['user_id'].'"><span style="'.getUserByID($user_id)['style'].'">'.getUserById($row['user_id'])['username'].'</span></a>
+                    <div class="comment-block-date">'.time_convert($row['create_date']).'</div>
+                    </div>
+                    <div class="main-content-header-right" style="display: none;">
+                        <div class="r_icon">
+                            <span>'.$num_likes.'</span>
+                            <div class="r_icon-contest">
+                                <img src="/public/assets/like.png" onclick="like_comment('.$row['id'].')" alt="">
+                            </div>
                         </div>
-                        <div class="comment-body-description">
-                            '.$row['message'].'
-                        </div>
-                        <div class="comment-body-date">
-                            <span class="date">'.time_convert($row['create_date']).' '.$num_likes.' <img src="/public/assets/like.png" onclick="like_comment(`'.$comment_id.'`)"></span>
+                        <div class="r_icon">
+                            <div class="r_icon-contest">
+                                <img src="/public/assets/flag.png" alt="">
+                            </div>
                         </div>
                     </div>
-                </div>';
+                    </div>';
+                    $i++;   
                 }
 
             ?>
-            </div>
-            
-            <div class="add_comment">
-                <input type="text" placeholder="Введите сообщение" id="comment-message">
-                <button class="btn btn-line" onclick="createComments(<?php echo $topic_id; ?>)">Отправить</button>
-            </div>
-        </div>
     </div>
-    
-    
-
-</main>
-
+                
+</div>
 
 <?php 
 footer();
