@@ -121,7 +121,11 @@ function top($title) {
                     Уведомления
                     </div>
                     <div class="line"></div>
-                    <div class="popup-content-body">У вас нет уведомлений</div>
+                    <div class="popup-content-body">
+                        <div class="notification-content">
+                            
+                        </div>    
+                    </div>
                 </div>
             </div>
             <div class="modal-popup" id="modal-info">

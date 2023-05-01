@@ -9,12 +9,14 @@ Develompent:
 - Like system
 - Watch System
 - Modal Windows
+- Search
 
 What should to do:
 - System notification
 - Message send and get
 - disrespec
 - API 
+- Report
 - Edit topic
 - New redactor
 - IMG downloader

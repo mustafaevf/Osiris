@@ -183,10 +183,10 @@ a, button, input {
 }
 .popup-content-body {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    flex-direction: column;
-    text-align: center;
+    /* flex-direction: column;
+    text-align: center; */
 }
 .popup-content-title {
     padding: .3rem .5rem;
@@ -556,9 +556,6 @@ button {
     width: 300px;
     z-index: 9999;
 }
-.modal-popup-card {
-    
-}
 .modal-card {
     
     background-size: cover;
@@ -573,6 +570,27 @@ button {
     background: #1a2c38;
     color: #b1bad3;
     overflow: hidden;
+}
+.notification-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.notification-content-block-right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.notification-content-block {
+    padding: .5rem .6rem;
+    display: flex;
+    gap: 7px;
+    border-bottom: 1px solid #2f4553;
+}
+.notification-content-block img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
 .modal-card-header {
     padding-top: 1.25rem;

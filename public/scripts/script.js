@@ -79,6 +79,19 @@ $('#dropdown-notification').click(function(e) {
   $('#popup-user').css('display', 'none')
   if( $('#popup-notification').css('display') === 'none') {
     $('#popup-notification').css('display', 'block');
+    $.ajax({
+      url: '/core/notification/get-notification.php', 
+      type: 'GET',
+      success: function(response) {
+        $('.notification-content').html(response)
+        console.log(response)
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+        alert('Ошибка при отправке данных на сервер!');
+      }
+    });
+
   } else {
     $('#popup-notification').css('display', 'none')
   }
@@ -303,6 +316,7 @@ function createComments(topic_id) {
       message: message
       },
       success: function(response) {
+        console.log(response)
       
       },
       error: function(jqXHR, textStatus, errorThrown) {

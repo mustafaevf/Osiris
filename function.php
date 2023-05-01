@@ -29,6 +29,19 @@ function time_convert($date) {
     return $result;
 }
 
+function getUserByTopic($topic_id) {
+    $user = 'root';
+    $password = '';
+    $host = 'localhost';
+    $database = 'osiris';
+
+    $conn = mysqli_connect($host, $user, $password, $database);
+    $query = "SELECT * FROM topics WHERE topic_id='$topic_id'";
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_array($result);
+    return $row;
+}
+
 function getUserByUsername($username) {
     $user = 'root';
     $password = '';
