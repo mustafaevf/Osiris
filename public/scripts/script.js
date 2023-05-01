@@ -16,8 +16,13 @@ function show(param) {
     
   }
   if(param == 'login') {
-    $('#modal-login').css('display', 'flex');
+    $('#modal-login').fadeIn().css('display', 'flex');
   }
+}
+
+
+function closePopupModal() {
+  $('#modal-info').fadeOut();
 }
 
 $(document).keydown(function(e) {
@@ -37,16 +42,28 @@ function close(param) {
 
 }
 
-$('#dropdown-forums').click(function(e) {
+$('.dropdown-forums').click(function(e) {
   e.stopPropagation();
-  if( $('.dropped-forums').css('display') === 'none') {
-    $('.dropped-forums').css('display', 'block');
+  if($(this).parent().find('.dropped-forums').css('display') === 'none') {
+    $(this).parent().find('.dropped-forums').css('display', 'block');
   } else {
-    $('.dropped-forums').css('display', 'none')
+    $(this).parent().find('.dropped-forums').css('display', 'none')
   }
  
   
 })
+
+$(window).scroll(function() {
+  var targetOffset = $('.main-content-header').offset().top; 
+  var scrollPosition = $(window).scrollTop(); 
+
+  if (scrollPosition >= targetOffset) {
+    $('.left-sidebar').css('display', 'none');
+  } else {
+    $('.left-sidebar').css('display', 'flex');
+  }
+});
+
 
 $('#dropdown-profile').click(function(e) {
   $('#popup-notification').css('display', 'none');
@@ -97,8 +114,10 @@ function like_topic(topic_id) {
     },
     success: function(response) {
       if(response !== 'ok' || response !== 'err') {
+        $('#modal-info').fadeIn();
         $('#modal-info-text').html(response)
-        $('#modal-info').css('display', 'flex');
+        setTimeout(closePopupModal, 5000);
+        // $('#modal-info').css('display', 'flex');
         
       }
     },
@@ -118,8 +137,9 @@ function like_comment(comment_id) {
     },
     success: function(response) {
       if(response !== 'ok' || response !== 'err') {
+        $('#modal-info').fadeIn();
         $('#modal-info-text').html(response)
-        $('#modal-info').css('display', 'flex');
+        setTimeout(closePopupModal, 5000);
         
       }
       
@@ -293,19 +313,49 @@ function createComments(topic_id) {
 
 }
 
-function updateComments(topic_id) {
-$.ajax({
-url: '/core/comment/get-comment.php', 
-type: 'GET',
-data: {
-topic_id: topic_id
-},
-success: function(response) {
-$('#up-com').html(response);
-},
-error: function(jqXHR, textStatus, errorThrown) {
-console.log(textStatus, errorThrown);
-alert('Ошибка при отправке данных на сервер!');
-}
+
+$('#search').on('keyup', function() {
+  var searchTerm = $(this).val();
+  $('#popup-search').css('display', 'block');
+  $.ajax({
+    url: '/core/utils/search.php',
+    type: 'POST',
+    data: { search: searchTerm },
+    success: function(response) {
+      if(response == '') {
+        $('#search-content').html('Ничего не найдено');
+      } else {
+        $('#search-content').html(response);
+      }
+    }
+  });
 });
+
+function updateComments(topic_id) {
+  $.ajax({
+    url: '/core/comment/get-comment.php',
+    type: 'GET',
+    data: {
+      topic_id: topic_id
+    },
+    success: function (response) {
+      $('.comment-blocks').html(response);
+      bindEventHandlers(); // Повторная привязка обработчиков событий после обновления
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown);
+      alert('Ошибка при отправке данных на сервер!');
+    }
+  });
+}
+
+// Повторная привязка обработчиков событий
+function bindEventHandlers() {
+  $('.comment-blocks-block').hover(function (e) {
+    $(this).find('.main-content-header-right').css('display', 'flex');
+  });
+
+  $('.comment-blocks-block').mouseleave(function (e) {
+    $(this).find('.main-content-header-right').css('display', 'none');
+  });
 }

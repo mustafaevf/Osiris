@@ -8,13 +8,17 @@ Develompent:
 - Comment Topic
 - Like system
 - Watch System
+- Modal Windows
 
 What should to do:
 - System notification
 - Message send and get
-- disrespect
-- Modal Windows
+- disrespec
 - API 
+- Edit topic
+- New redactor
+- IMG downloader
+- Auto Update Lenta
 - Edit Profile
 - Smart lenta
 

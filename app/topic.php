@@ -47,7 +47,9 @@ if($num_watch == 0) {
             <div class="main-content-information">
                 <div class="main-content-information-title">
                     <?php echo $row['title'] ?>
+                    
                 </div>
+                <a href="/user/<?php echo $user_id; ?>"><?php echo getUserByID($user_id)['username']; ?></a>
                 <div class="main-content-information-date">
                     <?php echo time_convert($row['create_date']) ?>
                 </div>
@@ -112,6 +114,16 @@ if($num_watch == 0) {
 
             ?>
     </div>
+    <?php 
+    if($_SESSION['auth'] == 1) {
+        echo ' <div class="create-comment">
+        <input type="text" placeholder="Сообщение" id="comment-message">
+        <button class="v2" onclick="createComments('.$topic_id.')">Отправить</button>
+    </div>';
+    }
+
+    ?>
+   
                 
 </div>
 
@@ -121,7 +133,10 @@ footer();
 ?>
 
 <script>
-    
-
+    $('#comment-message').keydown(function(event) {
+    if (event.which === 13) {
+        createComments(<?php echo $topic_id; ?>);
+    }
+    });
     setInterval(updateComments, 2500, <?php echo $topic_id ?>);
 </script>

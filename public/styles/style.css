@@ -111,6 +111,11 @@ a, button, input {
     right: 40px;
     width: 250px;
 }
+#popup-search {
+    top: 70px;
+    right: 180px;
+    width: 350px;
+}
 .main-content-image img{
     width: 60px;
     height: 60px;
@@ -264,6 +269,7 @@ a, button, input {
     border-radius: 3rem;
     padding: 5px;
     flex-shrink: 0;
+    flex-direction: column;
 }
 .comment-block-user {
     display: flex;
@@ -283,6 +289,22 @@ a, button, input {
 .comment-blocks a {
     color: #d5dceb;
     font-weight: 500;
+}
+.create-comment {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 20px;
+}
+.create-comment input {
+    width: 100%;
+
+}
+.create-comment button {
+    width: 300px;
+    padding: 0.5em;
 }
 .comment-blocks-block {
     display: flex;
@@ -441,7 +463,27 @@ button {
     background: #2f4553;
 }
 .main-content {
+    transition: margin-left 0.3s;
+    transition: width 0.3s;
     padding: 0 3vw;
+}
+.filter-select {
+    position: absolute;
+    top: 180px;
+    background: #0f212e;
+    height: 50px;
+    width: 300px;
+}
+.input-search {
+    padding: .3em;
+    border-radius: .25rem;
+    display: flex;
+    gap: 7px;
+    align-items: center;
+}
+.input-search img {
+    width: 20px;
+    height: 20px;
 }
 .main-content-title {
     margin-top: 1.5rem;
@@ -502,8 +544,23 @@ button {
     align-items: center;
     justify-content: center;
 }
-.modal-card {
+.modal-popup {
+    position: fixed;
+    top: 70px;
+    left: 260px;
+    height: fit-content;
+    background: #0f212e;
+    box-shadow: #0003 0 4px 6px -1px, #0000001f 0 2px 4px -1px;
+    padding: .1rem .2rem;
     border-radius: .5rem;
+    width: 300px;
+    z-index: 9999;
+}
+.modal-popup-card {
+    
+}
+.modal-card {
+    
     background-size: cover;
     background-position: center;
     position: relative;
