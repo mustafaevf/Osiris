@@ -8,10 +8,20 @@ if($_SESSION['auth'] != 1) {
     return;
 }
 
+
 $username = $_SESSION['username'];
 $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
 $row_user = mysqli_fetch_array($result);
 $user_id = $row_user['id'];
+
+$role = $row_user['role'];
+$query = "SELECT * FROM roles WHERE role_id = '$role'";
+$create_comment = mysqli_fetch_array(mysqli_query($conn, $query))['create_comment'];
+
+if($create_comment != 1) {
+    echo 'Вы не можете оставлять комментарии';
+    return;
+}
 
 $topic_id = $_POST['topic_id'];
 $message = htmlspecialchars($_POST['message']);

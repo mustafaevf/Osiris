@@ -22,10 +22,22 @@ $user_id = getUserByUsername($username)['id'];
 $query = "SELECT * FROM comments WHERE id = '$comment_id'";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_array($result);
+
+
+$role = getUserByUsername($username)['role'];
+$query = "SELECT * FROM roles WHERE role_id = '$role'";
+$like_comment = mysqli_fetch_array(mysqli_query($conn, $query))['like_comment'];
+
+if($like_comment != 1) {
+    echo 'Вам запрещено лайкать';
+    return;
+}
+
 if($row['user_id'] == $user_id) {
     echo 'вы не можете лайкать свой комментарий';
     return;
 }
+
 $query = "SELECT * FROM likes WHERE comment_id='$comment_id' AND from_user_id = '$user_id'";
 $result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result) > 0) {

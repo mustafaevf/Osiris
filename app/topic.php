@@ -25,6 +25,15 @@ $row_user = mysqli_fetch_array($result1);
 setActive(getUserByUsername($_SESSION['username'])['id'],'Смотрит тему '. $row['title']);
 $who_watch = getUserByUsername($_SESSION['username'])['id'];
 
+$role = getUserByUsername($_SESSION['username'])['role'];
+$query = "SELECT * FROM roles WHERE role_id = '$role'";
+$view_topic = mysqli_fetch_array(mysqli_query($conn, $query))['view_topic'];
+
+if($view_topic != 1) {
+    header('Location: /');
+    return;
+}
+
 top($row['title']);
 
 $query = "SELECT * FROM likes WHERE topic_id='$topic_id'";

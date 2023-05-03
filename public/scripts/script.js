@@ -50,6 +50,7 @@ $('#modal-pick-fourm-id-button').click(function(e) {
 })
 
 function close(param) {
+  // $('.overlay').parent().css('display', 'none');
   $('#modal-login').css('display', 'none');
   $('#modal-pick-forum-id').css('display', 'none');
 }
@@ -328,7 +329,9 @@ function createComments(topic_id, comment_id = -1) {
       message: message
       },
       success: function(response) {
-        console.log(response)
+        $('#modal-info').fadeIn();
+        $('#modal-info-text').html(response)
+        setTimeout(closePopupModal, 5000);
       
       },
       error: function(jqXHR, textStatus, errorThrown) {

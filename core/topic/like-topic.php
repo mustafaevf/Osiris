@@ -25,6 +25,15 @@ if(mysqli_num_rows($result) != 0) {
     return;
 }
 
+$role = getUserByUsername($username)['role'];
+$query = "SELECT * FROM roles WHERE role_id = '$role'";
+$like_topic = mysqli_fetch_array(mysqli_query($conn, $query))['like_topic'];
+
+if($like_topic != 1) {
+    echo 'Вам запрещено лайкать';
+    return;
+}
+
 $query = "SELECT * FROM topics WHERE topic_id = '$topic_id'";
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_array($result);
