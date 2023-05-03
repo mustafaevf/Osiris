@@ -17,7 +17,7 @@ if(mysqli_num_rows($result) != 1) {
     $row = mysqli_fetch_array($result);
 }
 $user_id = $row['user_id'];
-
+    
 $query1 = "SELECT * FROM users WHERE id='$user_id'";
 $result1 = mysqli_query($conn, $query1);
 $row_user = mysqli_fetch_array($result1);

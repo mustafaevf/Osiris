@@ -20,6 +20,14 @@ function show(param) {
   }
 }
 
+function create_topic(forum_id) {
+  if(forum_id === 0) {
+    $('#modal-pick-forum-id').css('display', 'flex');
+  } else {
+    href('/forums/'+ forum_id + '/create-topic')
+  }
+
+}
 
 function closePopupModal() {
   $('#modal-info').fadeOut();
@@ -37,9 +45,13 @@ $('.overlay').click(function(e) {
   $('#modal-info').fadeOut();
 });	
 
+$('#modal-pick-fourm-id-button').click(function(e) {
+  href('/forums/'+ $('#change-forum-id').val()+'/create-topic')
+})
+
 function close(param) {
   $('#modal-login').css('display', 'none');
-
+  $('#modal-pick-forum-id').css('display', 'none');
 }
 
 $('.dropdown-forums').click(function(e) {

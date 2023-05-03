@@ -136,6 +136,23 @@ function top($title) {
                     </div>
                 </div>
             </div>
+            <div class="modal" id="modal-pick-forum-id">
+                <div class="overlay" onclick=close()></div>
+                <div class="modal-card">
+                    <div class="modal-card-header">Выберите раздел</div>
+                    <div class="modal-card-content">
+                        <select id="change-forum-id">';
+                            $query = "SELECT * FROM subsections WHERE status = 1";
+                            $result = mysqli_query($conn, $query);
+                            while($row = mysqli_fetch_array($result)) {
+                                echo '<option id="pick-fid" value="'.$row['subsection_id'].'">'.$row['subsection_name'].'</option>';
+                            }
+                            
+                        echo '</select>
+                        <button class="v1" id="modal-pick-fourm-id-button">Создать тему</button>
+                    </div>
+                </div>
+            </div>
             <div class="modal" id="modal-login">
                 <div class="overlay" onclick=close()></div>
                 <div class="modal-card">

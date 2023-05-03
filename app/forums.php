@@ -36,7 +36,7 @@ top('Раздел | '. $row['subsection_name']);
                     </svg>
                 </div>
             </div>
-            <button class="v2">Создать тему</button>
+            <button class="v2" onclick="create_topic(<?Php echo $row['subsection_id'] ?>)">Создать тему</button>
         </div>
         <div class="theme-blocks">
             <?php 
