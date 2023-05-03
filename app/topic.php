@@ -12,6 +12,7 @@ $query = "SELECT * FROM topics WHERE topic_id='$topic_id' AND status=1";
 $result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result) != 1) {
     header('Location: /error');
+    return;
 } else {
     $row = mysqli_fetch_array($result);
 }
@@ -93,7 +94,7 @@ if($num_watch == 0) {
                         <img src="/public/images/avatars/'.getUserByID($row['user_id'])['avatar_image'].'" alt="">
                         <span><a href="/user/'.$row['user_id'].'">'.getUserByID($row['user_id'])['username'].'</span></a>
                     </div>
-                    <div class="comment-block-date">'.time_convert($row['create_date']).'</div>
+                    <div class="comment-block-date">'.time_convert($row['create_date']).' '.($_SESSION['id'] != $row['user_id'] ? "Ответить" : "") .'</div>
                     </div>
                     <div class="main-content-header-right" style="display: none;">
                         <div class="r_icon">

@@ -9,15 +9,17 @@ Develompent:
 - Like system
 - Watch System
 - Modal Windows
-- Search
+- Search 25%
 
 What should to do:
 - System notification
 - Message send and get
-- disrespec
+- disrespect
+- Answer on comment
 - API 
 - Report
 - Edit topic
+- Notifications
 - New redactor
 - IMG downloader
 - Auto Update Lenta

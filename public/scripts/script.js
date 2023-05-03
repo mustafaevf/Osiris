@@ -299,7 +299,7 @@ function createTopic(forum_id) {
   });
 }
 
-function createComments(topic_id) {
+function createComments(topic_id, comment_id = -1) {
   updateComments(topic_id)
   message = $('#comment-message').val();
   $('#comment-message').val('')
