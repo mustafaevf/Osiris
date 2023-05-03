@@ -19,7 +19,7 @@ top('123');
                
             </div>
            
-            <button class="v2" onclick="create_topic(0)">Создать тему</button>
+            <?php if($_SESSION['auth'] == 1) echo '<button class="v2" onclick="create_topic(0)">Создать тему</button>'; ?>
         </div>
         <div class="theme-blocks">
             
