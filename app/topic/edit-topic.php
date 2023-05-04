@@ -30,10 +30,6 @@ top('Редактирование темы | '. $row['title']);
     </div>
     <div class="editor-body">
         <div class="input">
-            <span>Раздел</span>
-            <input type="text">
-        </div>
-        <div class="input">
             <span>Заголовок: </span>
             <input type="text" id="create-topic-title" value="<?php echo $row['title']; ?>">
         </div>

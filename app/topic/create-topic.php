@@ -22,10 +22,6 @@ top('Создание темы | '. $row['subsection_name']);
     </div>
     <div class="editor-body">
         <div class="input">
-            <span>Раздел</span>
-            <input type="text">
-        </div>
-        <div class="input">
             <span>Заголовок: </span>
             <input type="text" id="create-topic-title">
         </div>
