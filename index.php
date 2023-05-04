@@ -24,7 +24,7 @@ if($_SESSION['auth'] != 1 || $_SESSION['auth'] == 1) {
         }
         if(count($page) == 3) {
             if($page[2] == 'create-topic') {
-                include "app/create-topic.php";
+                include "app/topic/create-topic.php";
             }
         }
     }
@@ -58,7 +58,7 @@ if($_SESSION['auth'] != 1 || $_SESSION['auth'] == 1) {
                 if(mysqli_num_rows($result) != 1) {
                     header('Location: /error');
                 }
-                include "app/topic.php";
+                include "app/topic/topic.php";
             }
         }
     }
