@@ -364,6 +364,31 @@ $('#center').click(function(e) {
 });
 
 
+function editTopic(topic_id) {
+  const title = $('#create-topic-title').val();
+  const description = $('#create-topic-description').val();
+  const tags = $('#create-topic-tags').val();
+
+
+  $.ajax({
+    url: '/core/topic/edit-topic.php', 
+    type: 'POST',
+    data: {
+      title: title,
+      description: description,
+      tags: tags,
+      topic_id: topic_id
+    },
+    success: function(response) {
+      console.log(response)     
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown);
+      alert('Ошибка при отправке данных на сервер!');
+    }
+  });
+}
+
 
 
 function createTopic(forum_id) {

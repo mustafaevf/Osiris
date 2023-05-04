@@ -61,6 +61,11 @@ if($_SESSION['auth'] != 1 || $_SESSION['auth'] == 1) {
                 include "app/topic/topic.php";
             }
         }
+        if(count($page) == 3) {
+            if($page[2] == 'edit-topic') {
+                include "app/topic/edit-topic.php";
+            }
+        }
     }
 } else {
     
