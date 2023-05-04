@@ -16,32 +16,55 @@ if(mysqli_num_rows($result) != 1) {
 }
 top('Создание темы | '. $row['subsection_name']);
 ?>
- <!-- <a href="/forum/<?php echo $row['subsection_id']; ?>"><?php echo $row['subsection_name']; ?></a> -->
-<main>
-    <div class="form">
+<div class="main-content">
+    <div class="main-content-title">
+        <h1>Создание темы в разделе <?php echo $row['subsection_name']; ?></h1>
+    </div>
+    <div class="editor-body">
         <div class="input">
-            <p>Раздел</p>
-            <input type="text" placeholder="<?php echo $row['subsection_name'] ?>" disabled>
+            <span>Раздел</span>
+            <input type="text">
         </div>
         <div class="input">
-            <p>Заголовок</p>
+            <span>Заголовок: </span>
             <input type="text" id="create-topic-title">
         </div>
-        <div class="textarea">
-            <p>Содержание</p>
+        <div class="input">
+            <span>Теги: </span>
+            <input type="text" id="create-topic-tags">
+        </div>
+        <div class="editor-textarea">
+            <div class="editor-bar">
+                <div class="editor-bar-block" id="attach_img">
+                    <img src="/public/assets/attach_file.png">
+                </div>
+                <div class="editor-bar-block" id="bold">
+                    <img src="/public/assets/bold.png">
+                </div>
+                <div class="editor-bar-block" id="color">
+                    <img src="/public/assets/format_color_fill_24px.png">
+                </div>
+                <div class="editor-bar-block" id="strike">
+                    <img src="/public/assets/format_strikethrough_24px.png">
+                </div>
+                <div class="editor-bar-block" id="size">
+                    <img src="/public/assets/format_size_24px.png">
+                </div>
+                <div class="editor-bar-block" id="left">
+                    <img src="/public/assets/format_align_left_24px.png">
+                </div>
+                <div class="editor-bar-block" id="center">
+                    <img src="/public/assets/format_align_center_24px.png">
+                </div>
+                <div class="editor-bar-block" id="right">
+                    <img src="/public/assets/format_align_right_24px.png">
+                </div>
+            </div>
             <textarea name="" id="create-topic-description"></textarea>
         </div>
-        <div class="input">
-            <p>Теги</p>
-            <div class="tags">
-
-            </div>
-            <input type="text" id="create-topic-tags" onkeyup="filterTopicTags()">
-        </div>
-        <button class="btn btn-line" onclick="createTopic(<?php echo $row['section_id'] ?>)">Создать тему</button>
+        <button class="v2" onclick="createTopic(<?php echo $row['subsection_id'];?>)">Создать</button>
     </div>
-    
-</main>
+</div>
 
 
 

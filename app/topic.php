@@ -77,10 +77,19 @@ if($num_watch == 0) {
                     <img src="/public/assets/flag.png" alt="">
                 </div>
             </div>
+            <?php 
+            if($_SESSION['id'] == $user_id) {
+                echo '<div class="r_icon">
+                <div class="r_icon-contest" onclick="href(`/topic/'.$topic_id.'/edit-topic`)">
+                    <img src="/public/assets/mode_24px.png" alt="">
+                </div>
+            </div>';
+            }
+            ?>
         </div>
     </div>
     <div class="main-content-body-topic">
-        <?php echo $row['description']?>
+        <?php echo bbcode($row['description']);?>
     </div>
     <div class="comment-blocks">
             <?php 

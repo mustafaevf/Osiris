@@ -29,6 +29,42 @@ function time_convert($date) {
     return $result;
 }
 
+function bbcode($var) {
+    $search = array(
+        '/\[b\](.*?)\[\/b\]/is',
+        '/\[i\](.*?)\[\/i\]/is',
+        '/\[u\](.*?)\[\/u\]/is',
+        '/\[img\](.*?)\[\/img\]/is',
+        '/\[url\](.*?)\[\/url\]/is',
+        '/\[url\=(.*?)\](.*?)\[\/url\]/is',
+        '/\[color\=(.*?)\](.*?)\[\/color\]/is',
+        '/\[size\=(.*?)\](.*?)\[\/size\]/is',
+        '/\[center\](.*?)\[\/center\]/is',
+        '/\[left\](.*?)\[\/left\]/is',         // Добавлено: [left]text[/left]
+        '/\[right\](.*?)\[\/right\]/is',       // Добавлено: [right]text[/right]
+        '/\[strike\](.*?)\[\/strike\]/is'      // Добавлено: [strike]text[/strike]
+    );
+    
+    $replace = array(
+        '<strong>$1</strong>',
+        '<em>$1</em>',
+        '<u>$1</u>',
+        '<img src="$1" />',
+        '<a href="$1">$1</a>',
+        '<a href="$1">$2</a>',
+        '<span style="color:$1">$2</span>',
+        '<span style="font-size:$1px">$2</span>',
+        '<div style="text-align:center">$1</div>',
+        '<div style="text-align:left">$1</div>',   // Добавлено: выравнивание по левому краю
+        '<div style="text-align:right">$1</div>',  // Добавлено: выравнивание по правому краю
+        '<strike>$1</strike>'                       // Добавлено: зачеркнутый текст
+    );
+    
+    $result = preg_replace ($search, $replace, $var);
+    return $result;
+}
+
+
 function getUserByTopic($topic_id) {
     $user = 'root';
     $password = '';

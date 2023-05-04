@@ -29,6 +29,9 @@ body {
     margin: 10px 0px;
     border-top: 2px solid #1a2c38;
 }
+.main-editor-body {
+    background: #0f212e;
+}
 input {
     padding: .5em;
     color: #fff;
@@ -653,4 +656,42 @@ button {
 }
 .main-content-other-right .card {
     width: 100%;
+}
+.editor-body {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+.editor-textarea {
+    background: #0f212e;
+    border-radius: .5rem;
+    padding: .3rem;
+    display: flex;
+    flex-direction: column;
+}
+textarea {
+    padding: .5em;
+    color: #fff;
+    background: #0f212e;
+    border: 2px solid #2f4553;
+    border-radius: .25rem;
+    resize: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+}
+.editor-bar {
+    display: flex;
+    gap: .2rem;
+    align-items: center;
+    padding: .3rem .5rem;
+}
+.editor-bar-block {
+    
+    cursor: pointer;
+}
+.editor-bar-block img {
+    width: 20px;
+    height: 20px;
 }

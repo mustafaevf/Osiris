@@ -285,6 +285,86 @@ function filterTopicTags () {
     
   // }
 }
+$('#bold').click(function(e) {
+  var textarea = document.getElementById('create-topic-description');
+  var startPos = textarea.selectionStart;
+  var endPos = textarea.selectionEnd;
+  var value = textarea.value;
+  var selectedText = value.substring(startPos, endPos);
+  var newValue = value.substring(0, startPos) + "[b]" + selectedText + "[/b]" + value.substring(endPos);
+  
+  textarea.value = newValue;
+  textarea.setSelectionRange(startPos + 3, endPos + 3); // Устанавливаем позицию курсора после вставки тега [b]
+});
+$('#color').click(function(e) {
+  var textarea = document.getElementById('create-topic-description');
+  var startPos = textarea.selectionStart;
+  var endPos = textarea.selectionEnd;
+  var value = textarea.value;
+  var selectedText = value.substring(startPos, endPos);
+  var newValue = value.substring(0, startPos) + "[color=ЦВЕТ]" + selectedText + "[/color]" + value.substring(endPos);
+  
+  textarea.value = newValue;
+  textarea.setSelectionRange(startPos + 3, endPos + 3); // Устанавливаем позицию курсора после вставки тега [b]
+});
+$('#strike').click(function(e) {
+  var textarea = document.getElementById('create-topic-description');
+  var startPos = textarea.selectionStart;
+  var endPos = textarea.selectionEnd;
+  var value = textarea.value;
+  var selectedText = value.substring(startPos, endPos);
+  var newValue = value.substring(0, startPos) + "[strike]" + selectedText + "[/strike]" + value.substring(endPos);
+  
+  textarea.value = newValue;
+  textarea.setSelectionRange(startPos + 3, endPos + 3); // Устанавливаем позицию курсора после вставки тега [b]
+});
+$('#size').click(function(e) {
+  var textarea = document.getElementById('create-topic-description');
+  var startPos = textarea.selectionStart;
+  var endPos = textarea.selectionEnd;
+  var value = textarea.value;
+  var selectedText = value.substring(startPos, endPos);
+  var newValue = value.substring(0, startPos) + "[size=РАЗМЕР]" + selectedText + "[/size]" + value.substring(endPos);
+  
+  textarea.value = newValue;
+  textarea.setSelectionRange(startPos + 3, endPos + 3); // Устанавливаем позицию курсора после вставки тега [b]
+});
+$('#left').click(function(e) {
+  var textarea = document.getElementById('create-topic-description');
+  var startPos = textarea.selectionStart;
+  var endPos = textarea.selectionEnd;
+  var value = textarea.value;
+  var selectedText = value.substring(startPos, endPos);
+  var newValue = value.substring(0, startPos) + "[left]" + selectedText + "[/left]" + value.substring(endPos);
+  
+  textarea.value = newValue;
+  textarea.setSelectionRange(startPos + 3, endPos + 3); // Устанавливаем позицию курсора после вставки тега [b]
+});
+$('#right').click(function(e) {
+  var textarea = document.getElementById('create-topic-description');
+  var startPos = textarea.selectionStart;
+  var endPos = textarea.selectionEnd;
+  var value = textarea.value;
+  var selectedText = value.substring(startPos, endPos);
+  var newValue = value.substring(0, startPos) + "[right]" + selectedText + "[/right]" + value.substring(endPos);
+  
+  textarea.value = newValue;
+  textarea.setSelectionRange(startPos + 3, endPos + 3); // Устанавливаем позицию курсора после вставки тега [b]
+});
+$('#center').click(function(e) {
+  var textarea = document.getElementById('create-topic-description');
+  var startPos = textarea.selectionStart;
+  var endPos = textarea.selectionEnd;
+  var value = textarea.value;
+  var selectedText = value.substring(startPos, endPos);
+  var newValue = value.substring(0, startPos) + "[center]" + selectedText + "[/center]" + value.substring(endPos);
+  
+  textarea.value = newValue;
+  textarea.setSelectionRange(startPos + 3, endPos + 3); // Устанавливаем позицию курсора после вставки тега [b]
+});
+
+
+
 
 function createTopic(forum_id) {
   const title = $('#create-topic-title').val();

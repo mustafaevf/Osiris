@@ -145,7 +145,7 @@ function top($title) {
                             $query = "SELECT * FROM subsections WHERE status = 1";
                             $result = mysqli_query($conn, $query);
                             while($row = mysqli_fetch_array($result)) {
-                                echo '<option id="pick-fid" value="'.$row['subsection_id'].'">'.$row['subsection_name'].'</option>';
+                                echo '<option value="'.$row['subsection_id'].'">'.$row['subsection_name'].'</option>';
                             }
                             
                         echo '</select>
